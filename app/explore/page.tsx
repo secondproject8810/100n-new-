@@ -359,8 +359,8 @@ export default function ExplorePage() {
       <div className="text-center mb-6 sm:mb-8 md:mb-12 mt-8 sm:mt-12 md:mt-16">
         {/* Logo */}
         <div className="mb-3 sm:mb-4">
-          <span className="font-logo text-3xl sm:text-4xl md:text-5xl font-bold">
-            100<span className="text-[#0056B3]">Networks</span>
+          <span className="text-3xl sm:text-4xl md:text-5xl font-bold" style={{fontFamily: 'Paradose, sans-serif'}}>
+                          <span style={{fontFamily: 'Montserrat, sans-serif', fontWeight: 900, fontStyle: 'italic'}}>100<span className="text-[#0056B3]">Networks</span></span>
           </span>
         </div>
         
