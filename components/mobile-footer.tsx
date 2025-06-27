@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { usePathname } from "next/navigation"
-import { MessageSquare, Globe, Briefcase, GraduationCap, Users, Building2, X } from "lucide-react"
+import { MessageSquare, Globe, Briefcase, GraduationCap, Users, Building2, X, BarChart3, Hash } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const footerItems = [
@@ -30,6 +30,34 @@ const footerItems = [
   },
 ]
 
+const companyFooterItems = [
+  {
+    name: "Dashboard",
+    href: "/company-dashboard",
+    icon: BarChart3,
+  },
+  {
+    name: "Jobs",
+    href: "/company-jobs",
+    icon: Briefcase,
+  },
+  {
+    name: "Freelance",
+    href: "/company-freelance",
+    icon: Users,
+  },
+  {
+    name: "Browse",
+    href: "/browse-professionals",
+    icon: Users,
+  },
+  {
+    name: "Feed",
+    href: "/company-feed",
+    icon: Hash,
+  },
+]
+
 const networkOptions = [
   {
     name: "People",
@@ -50,6 +78,11 @@ export default function MobileFooter() {
   const router = useRouter()
   const [showNetworkModal, setShowNetworkModal] = useState(false)
 
+  // Check if we're on company pages
+  const isCompanyPage = pathname?.startsWith('/company-') || pathname === '/browse-professionals' || false
+  
+  // For company pages, use company footer items; for personal pages, use regular footer items
+  const currentFooterItems = isCompanyPage ? companyFooterItems : footerItems
   const isNetworkActive = pathname === "/people" || pathname === "/employers"
 
   const handleNetworkClick = () => {
@@ -65,7 +98,7 @@ export default function MobileFooter() {
     <>
       <footer className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 md:hidden">
         <div className="flex items-center justify-around px-2 py-2 safe-area-pb">
-          {footerItems.map((item) => {
+          {currentFooterItems.map((item) => {
             const isActive = pathname === item.href
             return (
               <Link
@@ -89,29 +122,31 @@ export default function MobileFooter() {
             )
           })}
           
-          {/* Network Tab */}
-          <button
-            onClick={handleNetworkClick}
-            className={cn(
-              "flex flex-col items-center justify-center px-3 py-2 rounded-lg transition-colors min-w-0 flex-1",
-              isNetworkActive
-                ? "text-[#0056B3] bg-[#0056B3]/5"
-                : "text-slate-600 hover:text-[#0056B3] hover:bg-slate-50"
-            )}
-          >
-            <Users className={cn("h-4 w-4 mb-0.5", isNetworkActive ? "text-[#0056B3]" : "text-slate-600")} />
-            <span className={cn(
-              "text-[10px] font-medium max-w-full leading-none text-center",
-              isNetworkActive ? "text-[#0056B3]" : "text-slate-600"
-            )}>
-              Network
-            </span>
-          </button>
+          {/* Network Tab - Only show on personal profile pages */}
+          {!isCompanyPage && (
+            <button
+              onClick={handleNetworkClick}
+              className={cn(
+                "flex flex-col items-center justify-center px-3 py-2 rounded-lg transition-colors min-w-0 flex-1",
+                isNetworkActive
+                  ? "text-[#0056B3] bg-[#0056B3]/5"
+                  : "text-slate-600 hover:text-[#0056B3] hover:bg-slate-50"
+              )}
+            >
+              <Users className={cn("h-4 w-4 mb-0.5", isNetworkActive ? "text-[#0056B3]" : "text-slate-600")} />
+              <span className={cn(
+                "text-[10px] font-medium max-w-full leading-none text-center",
+                isNetworkActive ? "text-[#0056B3]" : "text-slate-600"
+              )}>
+                Network
+              </span>
+            </button>
+          )}
         </div>
       </footer>
 
-      {/* Network Options Modal */}
-      {showNetworkModal && (
+      {/* Network Options Modal - Only show on personal profile pages */}
+      {!isCompanyPage && showNetworkModal && (
         <div className="fixed inset-0 bg-black/50 flex items-end justify-center z-[60] md:hidden">
           <div className="bg-white rounded-t-2xl w-full max-w-sm mx-4 mb-20 shadow-2xl animate-in slide-in-from-bottom-4 duration-300">
             <div className="p-6">

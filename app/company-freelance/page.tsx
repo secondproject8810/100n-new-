@@ -321,280 +321,160 @@ export default function CompanyFreelance() {
   })
 
   return (
-    <div className="w-[65%] mx-auto py-8 px-4">
+    <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-primary-navy mb-2">Freelance Projects</h1>
-        <p className="text-lg font-semibold text-slate-600">
-          Manage your freelance projects and review proposals from talented professionals.
-        </p>
+      <div className="mb-6 sm:mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+          <div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading text-primary-navy mb-1 sm:mb-2">Freelance Projects</h1>
+            <p className="text-base sm:text-lg md:text-xl font-subheading text-slate-600">
+              Manage your freelance projects and review proposals from talented professionals.
+            </p>
+          </div>
+          <Button 
+            onClick={() => setShowNewProjectForm(true)}
+            className="bg-primary-navy hover:bg-primary-navy/90 text-white rounded-lg font-subheading text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3 w-full sm:w-auto"
+          >
+            <Plus className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+            New Project
+          </Button>
+        </div>
       </div>
 
-      <div className="flex gap-6">
-        {/* Sidebar */}
-        <div className="w-64 flex-shrink-0">
-          <div className="space-y-6">
-            {/* Project Management */}
+      {/* Metrics Cards */}
+      <div className="grid grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+        {freelanceMetrics.map((metric, index) => (
+          <Card key={index} className="border-slate-200 shadow-sm">
+            <CardContent className="p-4 sm:p-6">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <div className="p-2 sm:p-3 bg-blue-100 rounded-xl">
+                  <metric.icon className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+                </div>
+                <div className={`flex items-center space-x-1 text-sm sm:text-base font-subheading ${
+                  metric.isPositive ? 'text-green-600' : 'text-red-600'
+                }`}>
+                  {metric.isPositive ? (
+                    <ArrowUpRight className="h-3 w-3 sm:h-4 sm:w-4" />
+                  ) : (
+                    <ArrowDownRight className="h-3 w-3 sm:h-4 sm:w-4" />
+                  )}
+                  <span>{metric.change}</span>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-2xl sm:text-3xl font-heading text-primary-navy mb-1">{metric.value}</h3>
+                <p className="text-sm sm:text-base font-subheading text-slate-600">{metric.title}</p>
+                <p className="text-xs sm:text-sm font-subheading text-slate-400">{metric.period}</p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Main Content with Responsive Layout */}
+      <div className="flex flex-col lg:flex-row gap-4 sm:gap-6">
+        {/* Minimized Sidebar - Reduced width */}
+        <div className="lg:w-56 lg:flex-shrink-0">
+          {/* Mobile: Show filters as collapsible section */}
+          <div className="lg:hidden mb-6">
+            <Button 
+              onClick={() => setShowFilters(!showFilters)}
+              variant="outline" 
+              className="w-full border-slate-200 hover:border-primary-navy hover:text-primary-navy rounded-lg font-subheading text-sm"
+            >
+              <Filter className="h-4 w-4 mr-2" />
+              {showFilters ? 'Hide Filters' : 'Show Filters'}
+            </Button>
+          </div>
+
+          {/* Sidebar Content - Minimized */}
+          <div className={`space-y-3 ${showFilters ? 'block' : 'hidden lg:block'}`}>
+            {/* Project Management - Compact */}
             <Card className="border-slate-200 shadow-sm">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-bold text-primary-navy flex items-center">
-                  <Briefcase className="h-5 w-5 mr-2" />
-                  Project Management
+              <CardHeader className="pb-2 px-3">
+                <CardTitle className="text-sm font-heading text-primary-navy flex items-center">
+                  <Briefcase className="h-4 w-4 mr-2" />
+                  Projects
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <Button 
-                  variant="outline" 
-                  className="w-full justify-between border-slate-200 hover:border-primary-navy hover:text-primary-navy rounded-lg font-semibold text-sm"
-                >
-                  <span className="flex items-center">
-                    <FileText className="h-4 w-4 mr-2" />
-                    Active Projects
-                  </span>
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="w-full justify-between border-slate-200 hover:border-primary-navy hover:text-primary-navy rounded-lg font-semibold text-sm"
-                >
-                  <span className="flex items-center">
-                    <Clock className="h-4 w-4 mr-2" />
-                    Draft Projects
-                  </span>
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="w-full justify-between border-slate-200 hover:border-primary-navy hover:text-primary-navy rounded-lg font-semibold text-sm"
-                >
-                  <span className="flex items-center">
-                    <CheckCircle className="h-4 w-4 mr-2" />
-                    Completed Projects
-                  </span>
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-                <div className="text-sm text-slate-500 font-semibold text-center py-2">
-                  <p>8 active projects</p>
-                  <p>156 total proposals</p>
+              <CardContent className="space-y-1 px-3 pb-3">
+                <div className="text-xs text-slate-500 font-subheading space-y-1">
+                  <div className="flex justify-between">
+                    <span>Active:</span>
+                    <span className="font-medium">8</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Proposals:</span>
+                    <span className="font-medium">156</span>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Advanced Filters */}
+            {/* Advanced Filters - Compact */}
             <Card className="border-slate-200 shadow-sm">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-bold text-primary-navy flex items-center justify-between">
+              <CardHeader className="pb-2 px-3">
+                <CardTitle className="text-sm font-heading text-primary-navy flex items-center justify-between">
                   <span className="flex items-center">
-                    <Filter className="h-5 w-5 mr-2" />
-                    Advanced Filters
+                    <Filter className="h-4 w-4 mr-2" />
+                    Filters
                   </span>
-                  <Button 
-                    variant="ghost" 
-                    size="sm"
-                    onClick={() => setShowFilters(!showFilters)}
-                    className="text-[#0056B3] hover:text-primary-navy hover:bg-primary-navy/5 rounded-lg"
-                  >
-                    {showFilters ? 'Hide' : 'Show'}
-                  </Button>
                 </CardTitle>
               </CardHeader>
-              {showFilters && (
-                <CardContent className="space-y-6">
-                  {/* Search */}
-                  <div>
-                    <h4 className="font-semibold text-primary-navy mb-3 text-sm">Search Projects</h4>
-                    <div className="relative">
-                      <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
-                      <Input
-                        placeholder="Search by title, category, or skills..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="pl-10 rounded-lg font-semibold text-sm"
-                      />
+              <CardContent className="space-y-3 px-3 pb-3">
+                {/* Compact Search */}
+                <div className="relative">
+                  <Search className="h-3 w-3 absolute left-2 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                  <Input
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-7 h-8 rounded text-xs"
+                  />
+                </div>
+
+                {/* Quick Status Filters - Compact */}
+                <div>
+                  <h4 className="font-heading text-primary-navy mb-1 text-xs">Status</h4>
+                  <div className="space-y-1">
+                    <div className="flex items-center space-x-1">
+                      <Checkbox id="active-status" className="h-3 w-3" />
+                      <label htmlFor="active-status" className="text-xs font-subheading text-slate-600">Active</label>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Checkbox id="draft-status" className="h-3 w-3" />
+                      <label htmlFor="draft-status" className="text-xs font-subheading text-slate-600">Draft</label>
                     </div>
                   </div>
+                </div>
 
-                  <Separator />
-
-                  {/* Project Status */}
-                  <div>
-                    <h4 className="font-semibold text-primary-navy mb-3 text-sm">Project Status</h4>
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="active-status" />
-                        <label htmlFor="active-status" className="text-sm font-semibold text-slate-600">Active</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="draft-status" />
-                        <label htmlFor="draft-status" className="text-sm font-semibold text-slate-600">Draft</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="completed-status" />
-                        <label htmlFor="completed-status" className="text-sm font-semibold text-slate-600">Completed</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="closed-status" />
-                        <label htmlFor="closed-status" className="text-sm font-semibold text-slate-600">Closed</label>
-                      </div>
+                {/* Compact Category */}
+                <div>
+                  <h4 className="font-heading text-primary-navy mb-1 text-xs">Category</h4>
+                  <div className="space-y-1">
+                    <div className="flex items-center space-x-1">
+                      <Checkbox id="web-dev" className="h-3 w-3" />
+                      <label htmlFor="web-dev" className="text-xs font-subheading text-slate-600">Web Dev</label>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Checkbox id="mobile-dev" className="h-3 w-3" />
+                      <label htmlFor="mobile-dev" className="text-xs font-subheading text-slate-600">Mobile</label>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Checkbox id="design" className="h-3 w-3" />
+                      <label htmlFor="design" className="text-xs font-subheading text-slate-600">Design</label>
                     </div>
                   </div>
+                </div>
 
-                  <Separator />
-
-                  {/* Category */}
-                  <div>
-                    <h4 className="font-semibold text-primary-navy mb-3 text-sm">Category</h4>
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="web-dev" />
-                        <label htmlFor="web-dev" className="text-sm font-semibold text-slate-600">Web Development</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="mobile-dev" />
-                        <label htmlFor="mobile-dev" className="text-sm font-semibold text-slate-600">Mobile Development</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="design" />
-                        <label htmlFor="design" className="text-sm font-semibold text-slate-600">Design</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="content" />
-                        <label htmlFor="content" className="text-sm font-semibold text-slate-600">Content Creation</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="data-science" />
-                        <label htmlFor="data-science" className="text-sm font-semibold text-slate-600">Data Science</label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Separator />
-
-                  {/* Experience Level */}
-                  <div>
-                    <h4 className="font-semibold text-primary-navy mb-3 text-sm">Experience Level</h4>
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="beginner" />
-                        <label htmlFor="beginner" className="text-sm font-semibold text-slate-600">Beginner</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="intermediate" />
-                        <label htmlFor="intermediate" className="text-sm font-semibold text-slate-600">Intermediate</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="expert" />
-                        <label htmlFor="expert" className="text-sm font-semibold text-slate-600">Expert</label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Separator />
-
-                  {/* Project Duration */}
-                  <div>
-                    <h4 className="font-semibold text-primary-navy mb-3 text-sm">Project Duration</h4>
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="short-duration" />
-                        <label htmlFor="short-duration" className="text-sm font-semibold text-slate-600">Less than 1 month</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="medium-duration" />
-                        <label htmlFor="medium-duration" className="text-sm font-semibold text-slate-600">1-3 months</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="long-duration" />
-                        <label htmlFor="long-duration" className="text-sm font-semibold text-slate-600">3+ months</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="ongoing-duration" />
-                        <label htmlFor="ongoing-duration" className="text-sm font-semibold text-slate-600">Ongoing</label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Separator />
-
-                  {/* Budget Range */}
-                  <div>
-                    <h4 className="font-semibold text-primary-navy mb-3 text-sm">Budget Range</h4>
-                    <div className="px-2">
-                      <Slider
-                        value={filters.budgetRange}
-                        onValueChange={(value) => setFilters(prev => ({...prev, budgetRange: value}))}
-                        max={50000}
-                        min={1000}
-                        step={500}
-                        className="mb-3"
-                      />
-                      <div className="flex justify-between text-sm font-semibold text-slate-500">
-                        <span>${filters.budgetRange[0].toLocaleString()}</span>
-                        <span>${filters.budgetRange[1].toLocaleString()}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Separator />
-
-                  {/* Skills Required */}
-                  <div>
-                    <h4 className="font-semibold text-primary-navy mb-3 text-sm">Skills Required</h4>
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="react-skill" />
-                        <label htmlFor="react-skill" className="text-sm font-semibold text-slate-600">React</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="nodejs-skill" />
-                        <label htmlFor="nodejs-skill" className="text-sm font-semibold text-slate-600">Node.js</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="python-skill" />
-                        <label htmlFor="python-skill" className="text-sm font-semibold text-slate-600">Python</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="design-skill" />
-                        <label htmlFor="design-skill" className="text-sm font-semibold text-slate-600">UI/UX Design</label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="mobile-skill" />
-                        <label htmlFor="mobile-skill" className="text-sm font-semibold text-slate-600">Mobile Development</label>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              )}
-            </Card>
-
-            {/* Settings */}
-            <Card className="border-slate-200 shadow-sm">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-bold text-primary-navy flex items-center">
-                  <Settings className="h-5 w-5 mr-2" />
-                  Settings
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
+                {/* Clear Filters */}
                 <Button 
                   variant="outline" 
-                  className="w-full justify-between border-slate-200 hover:border-primary-navy hover:text-primary-navy rounded-lg font-semibold text-sm"
+                  size="sm"
+                  onClick={clearFilters}
+                  className="w-full h-7 text-xs border-slate-200 hover:border-primary-navy hover:text-primary-navy"
                 >
-                  <span className="flex items-center">
-                    <Users className="h-4 w-4 mr-2" />
-                    Company Profile
-                  </span>
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
-                                <Button 
-                  variant="outline" 
-                  className="w-full justify-between border-slate-200 hover:border-primary-navy hover:text-primary-navy rounded-lg font-semibold text-sm"
-                >
-                  <span className="flex items-center">
-                    <Briefcase className="h-4 w-4 mr-2" />
-                    Project Preferences
-                  </span>
-                  <ChevronRight className="h-4 w-4" />
+                  Clear All
                 </Button>
               </CardContent>
             </Card>
@@ -603,155 +483,119 @@ export default function CompanyFreelance() {
 
         {/* Main Content */}
         <div className="flex-1">
-          {/* Metrics Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {freelanceMetrics.map((metric, index) => (
-              <Card key={index} className="p-6 border border-slate-200 rounded-lg hover:shadow-lg transition-shadow">
-                <CardContent className="p-0">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className={`p-2 rounded-lg ${metric.isPositive ? 'bg-green-50' : 'bg-red-50'}`}>
-                      <metric.icon className={`h-5 w-5 ${metric.isPositive ? 'text-green-600' : 'text-red-600'}`} />
-                    </div>
-                    <div className={`flex items-center text-sm font-bold ${metric.isPositive ? 'text-green-600' : 'text-red-600'}`}>
-                      {metric.isPositive ? <ArrowUpRight className="h-4 w-4" /> : <ArrowDownRight className="h-4 w-4" />}
-                      {metric.change}
-                    </div>
-                  </div>
-                  <div className="text-2xl font-bold text-slate-900">{metric.value}</div>
-                  <div className="text-sm font-semibold text-slate-600">{metric.title}</div>
-                  <div className="text-xs font-semibold text-slate-500 mt-1">{metric.period}</div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex justify-between items-center mb-6">
-            <div className="text-sm font-semibold text-slate-600">
-              Showing {filteredProjects.length} of {projects.length} projects
-            </div>
-            <Button 
-              onClick={() => setShowNewProjectForm(true)}
-              className="bg-primary-navy hover:bg-primary-navy/90 text-white rounded-lg font-bold"
-            >
-              <Plus className="h-4 w-4 mr-2" />
-              New Project
-            </Button>
-          </div>
+          {/* Search Bar */}
+          <Card className="mb-6 sm:mb-8 border border-slate-200 rounded-lg">
+            <CardContent className="p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+                <div className="flex-1 relative">
+                  <Search className="h-4 w-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                  <Input
+                    placeholder="Search projects by title, category, or skills..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10 rounded-lg font-subheading text-sm"
+                  />
+                </div>
+                <Button variant="outline" className="font-subheading text-sm px-4 py-2 w-full sm:w-auto lg:hidden">
+                  <Filter className="h-4 w-4 mr-2" />
+                  Filters
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Projects List */}
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 mb-6 sm:mb-8">
             {filteredProjects.map((project) => (
               <Card key={project.id} className="border border-slate-200 rounded-lg hover:shadow-lg transition-shadow cursor-pointer" onClick={() => handleProjectClick(project.id)}>
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-2">
-                        <h3 className="text-lg font-heading text-primary-navy">{project.title}</h3>
-                        <Badge className={`${getStatusColor(project.status)} text-xs font-subheading px-2 py-1`}>
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4 space-y-3 sm:space-y-0">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 mb-2">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy truncate">{project.title}</h3>
+                        <Badge className={`${getStatusColor(project.status)} text-xs sm:text-sm font-subheading px-2 sm:px-3 py-1 w-fit`}>
                           {project.status}
                         </Badge>
                       </div>
-                      <div className="flex items-center space-x-4 text-sm font-subheading text-slate-500 mb-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-4 text-sm sm:text-base font-subheading text-slate-600 mb-2 sm:mb-3">
                         <span>{project.category}</span>
-                        <span>•</span>
+                        <span className="hidden sm:inline">•</span>
                         <span>{project.duration}</span>
-                        <span>•</span>
-                        <span>{project.budget}</span>
-                        <span>•</span>
-                        <span>{project.experience} level</span>
+                        <span className="hidden sm:inline">•</span>
+                        <span className="font-heading text-primary-navy">{project.budget}</span>
                       </div>
+                      <p className="text-sm sm:text-base font-subheading text-slate-500">Posted {project.posted}</p>
                     </div>
-                    <Button variant="ghost" size="icon" onClick={(e) => { e.stopPropagation(); }}>
-                      <MoreHorizontal className="h-4 w-4" />
-                    </Button>
+                    <div className="flex items-center space-x-2 self-start">
+                      <Button variant="ghost" size="sm" className="font-subheading" onClick={(e) => { e.stopPropagation(); }}>
+                        <Edit className="h-4 w-4 sm:h-5 sm:w-5" />
+                      </Button>
+                      <Button variant="ghost" size="sm" className="font-subheading" onClick={(e) => { e.stopPropagation(); }}>
+                        <MoreHorizontal className="h-4 w-4 sm:h-5 sm:w-5" />
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Project Stats */}
+                  <div className="grid grid-cols-3 gap-3 sm:gap-6 mb-4">
+                    <div className="text-center p-3 sm:p-4 bg-slate-50 rounded-lg">
+                      <div className="flex items-center justify-center mb-1 sm:mb-2">
+                        <Users className="h-4 w-4 sm:h-5 sm:w-5 text-slate-500 mr-1 sm:mr-2" />
+                        <span className="text-lg sm:text-2xl font-heading text-slate-900">{project.proposals}</span>
+                      </div>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Proposals</p>
+                    </div>
+                    <div className="text-center p-3 sm:p-4 bg-slate-50 rounded-lg">
+                      <div className="flex items-center justify-center mb-1 sm:mb-2">
+                        <Eye className="h-4 w-4 sm:h-5 sm:w-5 text-slate-500 mr-1 sm:mr-2" />
+                        <span className="text-lg sm:text-2xl font-heading text-slate-900">{project.views}</span>
+                      </div>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Views</p>
+                    </div>
+                    <div className="text-center p-3 sm:p-4 bg-slate-50 rounded-lg">
+                      <div className="flex items-center justify-center mb-1 sm:mb-2">
+                        <Target className="h-4 w-4 sm:h-5 sm:w-5 text-slate-500 mr-1 sm:mr-2" />
+                        <span className="text-lg sm:text-2xl font-heading text-slate-900">{project.views > 0 ? ((project.proposals / project.views) * 100).toFixed(1) : '0'}%</span>
+                      </div>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Rate</p>
+                    </div>
                   </div>
 
                   {/* Skills */}
                   <div className="mb-4">
+                    <h4 className="text-sm sm:text-base font-heading text-slate-900 mb-2">Skills Required</h4>
                     <div className="flex flex-wrap gap-2">
                       {project.skills.map((skill, index) => (
-                        <Badge key={index} variant="outline" className="text-xs font-subheading border-slate-300">
+                        <Badge key={index} variant="outline" className="text-xs sm:text-sm font-subheading">
                           {skill}
                         </Badge>
                       ))}
                     </div>
                   </div>
 
-                  {/* Project Stats */}
-                  <div className="grid grid-cols-3 gap-4 mb-4">
-                    <div className="text-center p-3 bg-slate-50 rounded">
-                      <div className="text-lg font-heading text-slate-900">{project.proposals}</div>
-                      <div className="text-xs font-subheading text-slate-500">Proposals</div>
-                    </div>
-                    <div className="text-center p-3 bg-slate-50 rounded">
-                      <div className="text-lg font-heading text-slate-900">{project.views}</div>
-                      <div className="text-xs font-subheading text-slate-500">Views</div>
-                    </div>
-                    <div className="text-center p-3 bg-slate-50 rounded">
-                      <div className="text-lg font-heading text-slate-900">{project.posted}</div>
-                      <div className="text-xs font-subheading text-slate-500">Posted</div>
-                    </div>
-                  </div>
-
                   {/* Recent Proposals */}
                   {project.proposals_data.length > 0 && (
-                    <div className="mb-4">
-                      <h4 className="text-sm font-heading text-slate-900 mb-2">Recent Proposals</h4>
+                    <div>
+                      <h4 className="text-sm sm:text-base font-heading text-slate-900 mb-2 sm:mb-3">Recent Proposals</h4>
                       <div className="space-y-2">
-                        {project.proposals_data.slice(0, 2).map((proposal, index) => (
-                          <div key={index} className="flex items-center justify-between p-2 bg-slate-50 rounded">
-                            <div className="flex items-center space-x-3">
-                              <div className="w-8 h-8 bg-primary-navy text-white rounded-full flex items-center justify-center text-xs font-subheading">
-                                {proposal.name.split(' ').map(n => n[0]).join('')}
-                              </div>
-                              <div>
-                                <div className="text-sm font-subheading text-slate-900">{proposal.name}</div>
-                                <div className="text-xs font-subheading text-slate-500">Rating: {proposal.rating}★</div>
-                              </div>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <Badge className={`${getProposalStatusColor(proposal.status)} text-xs font-subheading`}>
+                        {project.proposals_data.slice(0, 3).map((proposal, index) => (
+                          <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-2 sm:p-3 bg-slate-50 rounded space-y-2 sm:space-y-0">
+                            <span className="text-sm sm:text-base font-subheading text-slate-900 truncate">{proposal.name}</span>
+                            <div className="flex items-center justify-between sm:justify-end space-x-2">
+                              <span className="text-xs sm:text-sm font-heading text-slate-900">{proposal.proposal_amount}</span>
+                              <Badge className={`${getProposalStatusColor(proposal.status)} text-xs font-subheading px-2 py-1`}>
                                 {proposal.status}
                               </Badge>
-                              <span className="text-sm font-heading text-slate-900">{proposal.proposal_amount}</span>
                             </div>
                           </div>
                         ))}
                       </div>
                     </div>
                   )}
-
-                  {/* Action Buttons */}
-                  <div className="flex space-x-3">
-                    <Button 
-                      className="flex-1 bg-primary-navy hover:bg-primary-navy/90 text-white rounded-lg font-subheading text-sm"
-                      onClick={(e) => { e.stopPropagation(); handleProjectClick(project.id); }}
-                    >
-                      <Eye className="h-4 w-4 mr-2" />
-                      View Details
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-subheading text-sm"
-                      onClick={(e) => { e.stopPropagation(); }}
-                    >
-                      <Edit className="h-4 w-4 mr-2" />
-                      Edit Project
-                    </Button>
-                  </div>
                 </CardContent>
               </Card>
             ))}
           </div>
-
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-12">
-              <Briefcase className="h-16 w-16 text-slate-300 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-slate-600 mb-2">No projects found</h3>
-              <p className="text-slate-500 font-semibold">Try adjusting your filters to see more projects.</p>
-            </div>
-          )}
         </div>
       </div>
 
@@ -759,141 +603,142 @@ export default function CompanyFreelance() {
       {showNewProjectForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-slate-200">
+            <div className="p-4 sm:p-6 border-b border-slate-200">
               <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-primary-navy">Post New Project</h2>
+                <h2 className="text-xl sm:text-2xl font-heading text-primary-navy">Post New Project</h2>
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setShowNewProjectForm(false)}
                   className="rounded-xl"
                 >
-                  <XCircle className="h-6 w-6" />
+                  <XCircle className="h-5 w-5 sm:h-6 sm:w-6" />
                 </Button>
               </div>
             </div>
             
-            <form onSubmit={handleCreateProject} className="p-6 space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form onSubmit={handleCreateProject} className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="project-title" className="font-bold text-primary-navy text-base">Project Title *</Label>
+                  <Label htmlFor="project-title" className="font-heading text-primary-navy text-sm sm:text-base">Project Title *</Label>
                   <Input
                     id="project-title"
                     placeholder="e.g. React Native App Development"
                     value={projectData.title}
                     onChange={(e) => setProjectData({...projectData, title: e.target.value})}
-                    className="rounded-xl font-semibold text-base py-3"
+                    className="rounded-xl font-subheading text-sm sm:text-base py-2 sm:py-3"
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="category" className="font-bold text-primary-navy text-base">Category</Label>
+                  <Label htmlFor="category" className="font-heading text-primary-navy text-sm sm:text-base">Category</Label>
                   <Select value={projectData.category} onValueChange={(value) => setProjectData({...projectData, category: value})}>
-                    <SelectTrigger className="rounded-xl font-semibold text-base py-3">
+                    <SelectTrigger className="rounded-xl font-subheading text-sm sm:text-base py-2 sm:py-3">
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl">
-                      <SelectItem value="web-development" className="font-semibold">Web Development</SelectItem>
-                      <SelectItem value="mobile-development" className="font-semibold">Mobile Development</SelectItem>
-                      <SelectItem value="design" className="font-semibold">Design & Creative</SelectItem>
-                      <SelectItem value="content-marketing" className="font-semibold">Content & Marketing</SelectItem>
-                      <SelectItem value="data-science" className="font-semibold">Data Science</SelectItem>
-                      <SelectItem value="consulting" className="font-semibold">Consulting</SelectItem>
+                      <SelectItem value="web-development" className="font-subheading">Web Development</SelectItem>
+                      <SelectItem value="mobile-development" className="font-subheading">Mobile Development</SelectItem>
+                      <SelectItem value="design" className="font-subheading">Design & Creative</SelectItem>
+                      <SelectItem value="content-marketing" className="font-subheading">Content & Marketing</SelectItem>
+                      <SelectItem value="data-science" className="font-subheading">Data Science</SelectItem>
+                      <SelectItem value="consulting" className="font-subheading">Consulting</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="budget" className="font-bold text-primary-navy text-base">Budget Range *</Label>
+                  <Label htmlFor="budget" className="font-heading text-primary-navy text-sm sm:text-base">Budget Range *</Label>
                   <Input
                     id="budget"
                     placeholder="e.g. $5,000 - $10,000"
                     value={projectData.budget}
                     onChange={(e) => setProjectData({...projectData, budget: e.target.value})}
-                    className="rounded-xl font-semibold text-base py-3"
+                    className="rounded-xl font-subheading text-sm sm:text-base py-2 sm:py-3"
                     required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="duration" className="font-bold text-primary-navy text-base">Project Duration *</Label>
+                  <Label htmlFor="duration" className="font-heading text-primary-navy text-sm sm:text-base">Project Duration *</Label>
                   <Select value={projectData.duration} onValueChange={(value) => setProjectData({...projectData, duration: value})}>
-                    <SelectTrigger className="rounded-xl font-semibold text-base py-3">
+                    <SelectTrigger className="rounded-xl font-subheading text-sm sm:text-base py-2 sm:py-3">
                       <SelectValue placeholder="Select duration" />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl">
-                      <SelectItem value="1-2-weeks" className="font-semibold">1-2 weeks</SelectItem>
-                      <SelectItem value="3-4-weeks" className="font-semibold">3-4 weeks</SelectItem>
-                      <SelectItem value="1-2-months" className="font-semibold">1-2 months</SelectItem>
-                      <SelectItem value="3-6-months" className="font-semibold">3-6 months</SelectItem>
-                      <SelectItem value="6-months+" className="font-semibold">6+ months</SelectItem>
-                      <SelectItem value="ongoing" className="font-semibold">Ongoing</SelectItem>
+                      <SelectItem value="1-2-weeks" className="font-subheading">1-2 weeks</SelectItem>
+                      <SelectItem value="3-4-weeks" className="font-subheading">3-4 weeks</SelectItem>
+                      <SelectItem value="1-2-months" className="font-subheading">1-2 months</SelectItem>
+                      <SelectItem value="3-6-months" className="font-subheading">3-6 months</SelectItem>
+                      <SelectItem value="6-months+" className="font-subheading">6+ months</SelectItem>
+                      <SelectItem value="ongoing" className="font-subheading">Ongoing</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="experience" className="font-bold text-primary-navy text-base">Experience Level</Label>
+                  <Label htmlFor="experience" className="font-heading text-primary-navy text-sm sm:text-base">Experience Level</Label>
                   <Select value={projectData.experience} onValueChange={(value) => setProjectData({...projectData, experience: value})}>
-                    <SelectTrigger className="rounded-xl font-semibold text-base py-3">
+                    <SelectTrigger className="rounded-xl font-subheading text-sm sm:text-base py-2 sm:py-3">
                       <SelectValue placeholder="Select experience level" />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl">
-                      <SelectItem value="entry" className="font-semibold">Entry Level</SelectItem>
-                      <SelectItem value="intermediate" className="font-semibold">Intermediate</SelectItem>
-                      <SelectItem value="expert" className="font-semibold">Expert</SelectItem>
+                      <SelectItem value="beginner" className="font-subheading">Beginner</SelectItem>
+                      <SelectItem value="intermediate" className="font-subheading">Intermediate</SelectItem>
+                      <SelectItem value="expert" className="font-subheading">Expert</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="timeline" className="font-bold text-primary-navy text-base">Start Timeline</Label>
+                  <Label htmlFor="timeline" className="font-heading text-primary-navy text-sm sm:text-base">Timeline</Label>
                   <Input
                     id="timeline"
-                    placeholder="e.g. ASAP, 2 weeks, 1 month"
+                    placeholder="e.g. ASAP, 2 weeks, Flexible"
                     value={projectData.timeline}
                     onChange={(e) => setProjectData({...projectData, timeline: e.target.value})}
-                    className="rounded-xl font-semibold text-base py-3"
+                    className="rounded-xl font-subheading text-sm sm:text-base py-2 sm:py-3"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="skills" className="font-bold text-primary-navy text-base">Required Skills</Label>
-                <Input
-                  id="skills"
-                  placeholder="e.g. React, Node.js, TypeScript (comma separated)"
-                  value={projectData.skills}
-                  onChange={(e) => setProjectData({...projectData, skills: e.target.value})}
-                  className="rounded-xl font-semibold text-base py-3"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="description" className="font-bold text-primary-navy text-base">Project Description *</Label>
+                <Label htmlFor="description" className="font-heading text-primary-navy text-sm sm:text-base">Project Description *</Label>
                 <Textarea
                   id="description"
-                  placeholder="Describe the project requirements, deliverables, and expectations..."
+                  placeholder="Describe your project requirements, goals, and expectations in detail..."
                   value={projectData.description}
                   onChange={(e) => setProjectData({...projectData, description: e.target.value})}
-                  className="min-h-32 rounded-xl font-semibold text-base"
+                  className="min-h-24 sm:min-h-32 rounded-xl font-subheading text-sm sm:text-base"
                   required
                 />
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-6">
+              <div className="space-y-2">
+                <Label htmlFor="skills" className="font-heading text-primary-navy text-sm sm:text-base">Skills Required</Label>
+                <Textarea
+                  id="skills"
+                  placeholder="List the key skills required for this project (e.g., React Native, TypeScript, Firebase, UI/UX Design)"
+                  value={projectData.skills}
+                  onChange={(e) => setProjectData({...projectData, skills: e.target.value})}
+                  className="min-h-16 sm:min-h-24 rounded-xl font-subheading text-sm sm:text-base"
+                />
+                <p className="text-xs sm:text-sm text-slate-500 font-subheading">Separate skills with commas for better visibility</p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                 <Button 
                   type="button" 
                   variant="outline"
-                  className="flex-1 border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-bold text-base py-3"
+                  className="flex-1 border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading text-sm sm:text-base py-2 sm:py-3"
                   onClick={() => setShowNewProjectForm(false)}
                 >
                   Cancel
                 </Button>
                 <Button 
                   type="submit" 
-                  className="flex-1 bg-primary-navy hover:bg-primary-navy/90 text-white rounded-xl font-bold text-base py-3"
+                  className="flex-1 bg-primary-navy hover:bg-primary-navy/90 text-white rounded-xl font-subheading text-sm sm:text-base py-2 sm:py-3"
                 >
                   Post Project
                 </Button>

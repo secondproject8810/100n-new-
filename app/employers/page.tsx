@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -14,14 +14,25 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Search, Filter, MapPin, Users, Building2, Star, TrendingUp, Award, ChevronRight, Bookmark, Eye, Heart, Globe, Calendar, Shield, Zap, ArrowLeft, X, Send, MessageCircle, UserPlus, ExternalLink, CheckCircle, Phone, Mail, DollarSign, Clock, Target } from "lucide-react"
 import Link from "next/link"
+import SimplePreloader from "@/components/simple-preloader"
 
 export default function EmployersPage() {
+  const [isLoading, setIsLoading] = useState(true)
   const [showFilters, setShowFilters] = useState(false)
   const [followerRange, setFollowerRange] = useState([1000, 1000000])
   const [ratingRange, setRatingRange] = useState([3.0, 5.0])
   const [selectedCompany, setSelectedCompany] = useState<any>(null)
   const [showJobsModal, setShowJobsModal] = useState(false)
   const [followedCompanies, setFollowedCompanies] = useState<number[]>([2])
+
+  // Simulate loading delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 2000) // 2 second loading time
+
+    return () => clearTimeout(timer)
+  }, [])
 
   const companies = [
     {
@@ -262,6 +273,9 @@ export default function EmployersPage() {
 
   return (
     <>
+      {/* Simple Preloader */}
+      <SimplePreloader isLoading={isLoading} />
+      
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       {/* Header Section */}
       <div className="mb-6 lg:mb-8">
