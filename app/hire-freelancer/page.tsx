@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useRouter } from "next/navigation"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -36,7 +36,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 
-export default function HireFreelancerPage() {
+function HireFreelancerContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const projectId = searchParams.get('project')
@@ -762,5 +762,13 @@ export default function HireFreelancerPage() {
         </div>
       )}
     </>
+  )
+}
+
+export default function HireFreelancerPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HireFreelancerContent />
+    </Suspense>
   )
 } 

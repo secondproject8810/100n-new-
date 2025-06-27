@@ -39,7 +39,7 @@ export default function CompanyProfilePage() {
   const [isEditing, setIsEditing] = useState(false)
 
   return (
-    <div className="w-[65%] mx-auto py-6">
+    <div className="max-w-6xl mx-auto py-6">
       {/* Enhanced Header Card */}
       <Card className="mb-8 border-slate-200 shadow-lg overflow-hidden">
         <div className="relative">
@@ -49,7 +49,7 @@ export default function CompanyProfilePage() {
             <Button
               size="sm"
               variant="secondary"
-              className="absolute top-4 right-4 bg-white/90 hover:bg-white text-slate-700 rounded-lg font-semibold"
+              className="absolute top-4 right-4 bg-white/90 hover:bg-white text-slate-700 rounded-lg font-subheading"
             >
               <Camera className="h-4 w-4 mr-2" />
               Edit Cover
@@ -63,7 +63,7 @@ export default function CompanyProfilePage() {
               <div className="relative mb-6 lg:mb-0 -mt-16">
                 <Avatar className="h-36 w-36 border-4 border-white shadow-xl">
                   <AvatarImage src="/company-logo.png" alt="TechCorp Inc" />
-                  <AvatarFallback className="text-2xl font-bold bg-gradient-to-br from-primary-navy to-[#0056B3] text-white">TC</AvatarFallback>
+                  <AvatarFallback className="text-2xl font-heading bg-gradient-to-br from-primary-navy to-[#0056B3] text-white">TC</AvatarFallback>
                 </Avatar>
                 <Button
                   size="icon"
@@ -79,41 +79,38 @@ export default function CompanyProfilePage() {
                 <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between">
                   <div className="mb-4 lg:mb-0">
                     <div className="flex items-center space-x-3 mb-2">
-                      <h1 className="text-3xl font-bold text-primary-navy">TechCorp Inc</h1>
+                      <h1 className="text-3xl font-heading text-primary-navy">TechCorp Inc</h1>
                       <Verified className="h-6 w-6 text-[#0056B3]" />
-                      <Badge className="bg-green-50 text-green-700 border-green-200 font-bold text-xs">
-                        Verified Company
-                      </Badge>
                     </div>
-                    <p className="text-xl font-semibold text-slate-600 mb-2">Leading Technology Solutions Provider</p>
-                    <div className="flex items-center text-slate-500 font-semibold">
+                    <p className="text-xl font-subheading text-slate-600 mb-2">Leading Technology Solutions Provider</p>
+                    <div className="flex items-center text-slate-500 font-subheading">
                       <MapPin className="h-4 w-4 mr-2" />
                       San Francisco, CA • Founded 2015 • 250+ employees
                     </div>
                   </div>
                   <div className="flex space-x-3">
-                    <Button variant="outline" className="border-slate-200 hover:border-primary-navy hover:text-primary-navy rounded-lg font-semibold">
-                      <Share2 className="h-4 w-4 mr-2" />
-                      Share
+                    <Button variant="outline" className="border-slate-200 hover:border-primary-navy hover:text-primary-navy rounded-lg font-subheading">
+                      <Download className="h-4 w-4 mr-2" />
+                      Company Info
                     </Button>
-                    <Button className="bg-primary-navy hover:bg-primary-navy/90 text-white rounded-lg font-semibold">
+                    <Button className="bg-primary-navy hover:bg-primary-navy/90 text-white rounded-lg font-subheading">
                       <Edit className="h-4 w-4 mr-2" />
-                      Edit Company Profile
+                      Edit Profile
                     </Button>
                   </div>
                 </div>
 
                 {/* Contact & Links */}
                 <div className="flex flex-wrap gap-6 mt-6 text-sm">
-                  <a href="mailto:contact@techcorp.com" className="flex items-center text-[#0056B3] hover:text-primary-navy transition-colors font-semibold">
+                  <a href="mailto:contact@techcorp.com" className="flex items-center text-[#0056B3] hover:text-primary-navy transition-colors font-subheading">
                     <Mail className="h-4 w-4 mr-2" />
                     contact@techcorp.com
                   </a>
-                  <div className="flex items-center text-slate-500 font-semibold">
+                  <div className="flex items-center text-slate-500 font-subheading">
                     <Phone className="h-4 w-4 mr-2" />
                     (555) 987-6543
                   </div>
-                  <a href="https://techcorp.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-[#0056B3] hover:text-primary-navy transition-colors font-semibold">
+                  <a href="https://techcorp.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-[#0056B3] hover:text-primary-navy transition-colors font-subheading">
                     <Globe className="h-4 w-4 mr-2" />
                     techcorp.com
                     <ExternalLink className="h-3 w-3 ml-1" />
@@ -125,29 +122,22 @@ export default function CompanyProfilePage() {
                   <div className="flex items-center space-x-2">
                     <Users className="h-5 w-5 text-[#0056B3]" />
                     <div>
-                      <span className="font-bold text-lg text-primary-navy">250+</span>
-                      <span className="text-slate-500 font-semibold ml-1">employees</span>
+                      <span className="font-heading text-lg text-primary-navy">250+</span>
+                      <span className="text-slate-500 font-subheading ml-1">employees</span>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Eye className="h-5 w-5 text-[#0056B3]" />
                     <div>
-                      <span className="font-bold text-lg text-primary-navy">5,234</span>
-                      <span className="text-slate-500 font-semibold ml-1">profile views</span>
+                      <span className="font-heading text-lg text-primary-navy">5,234</span>
+                      <span className="text-slate-500 font-subheading ml-1">profile views</span>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Star className="h-5 w-5 text-yellow-500" />
                     <div>
-                      <span className="font-bold text-lg text-primary-navy">4.8</span>
-                      <span className="text-slate-500 font-semibold ml-1">company rating</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <TrendingUp className="h-5 w-5 text-green-500" />
-                    <div>
-                      <span className="font-bold text-lg text-primary-navy">$50M</span>
-                      <span className="text-slate-500 font-semibold ml-1">total funding</span>
+                      <span className="font-heading text-lg text-primary-navy">4.8</span>
+                      <span className="text-slate-500 font-subheading ml-1">rating</span>
                     </div>
                   </div>
                 </div>
@@ -162,76 +152,76 @@ export default function CompanyProfilePage() {
         <div className="lg:col-span-2 space-y-8">
           {/* Enhanced About Section */}
           <Card className="border-slate-200 shadow-sm">
-            <CardHeader className="flex flex-row items-center justify-between border-b border-slate-100 pb-4">
-              <h2 className="text-2xl font-bold text-primary-navy">About TechCorp</h2>
-              <Button variant="ghost" size="icon" className="text-slate-400 hover:text-primary-navy hover:bg-primary-navy/5 rounded-full">
+            <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-100 pb-3 sm:pb-4 px-4 sm:px-6">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-primary-navy mb-2 sm:mb-0">About TechCorp</h2>
+              <Button variant="ghost" size="icon" className="text-slate-400 hover:text-primary-navy hover:bg-primary-navy/5 rounded-full self-start sm:self-auto">
                 <Edit className="h-4 w-4" />
               </Button>
             </CardHeader>
-            <CardContent className="pt-6">
-              <p className="text-slate-600 font-semibold leading-relaxed text-lg mb-4">
+            <CardContent className="pt-4 sm:pt-6 px-4 sm:px-6">
+              <p className="text-slate-600 font-semibold leading-relaxed text-sm sm:text-base md:text-lg mb-4">
                 TechCorp Inc is a leading technology solutions provider specializing in enterprise software development, 
                 cloud infrastructure, and AI-powered solutions. We serve Fortune 500 companies worldwide, helping them 
                 transform their digital capabilities and achieve sustainable growth.
               </p>
-              <p className="text-slate-600 font-semibold leading-relaxed text-lg">
+              <p className="text-slate-600 font-semibold leading-relaxed text-sm sm:text-base md:text-lg">
                 Founded in 2015, we've grown from a small startup to a globally recognized technology company with offices 
                 in San Francisco, New York, and London. Our mission is to democratize access to cutting-edge technology 
                 and empower businesses to thrive in the digital age.
               </p>
-              <div className="flex flex-wrap gap-2 mt-6">
-                <Badge className="bg-[#0056B3]/10 text-[#0056B3] border-[#0056B3]/20 font-bold">Actively hiring</Badge>
-                <Badge className="bg-green-50 text-green-700 border-green-200 font-bold">Remote-first</Badge>
-                <Badge className="bg-purple-50 text-purple-700 border-purple-200 font-bold">Series C</Badge>
-                <Badge className="bg-yellow-50 text-yellow-700 border-yellow-200 font-bold">B Corp Certified</Badge>
+              <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
+                <Badge className="bg-[#0056B3]/10 text-[#0056B3] border-[#0056B3]/20 font-bold text-xs">Actively hiring</Badge>
+                <Badge className="bg-green-50 text-green-700 border-green-200 font-bold text-xs">Remote-first</Badge>
+                <Badge className="bg-purple-50 text-purple-700 border-purple-200 font-bold text-xs">Series C</Badge>
+                <Badge className="bg-yellow-50 text-yellow-700 border-yellow-200 font-bold text-xs">B Corp Certified</Badge>
               </div>
             </CardContent>
           </Card>
 
           {/* Company Details */}
           <Card className="border-slate-200 shadow-sm">
-            <CardHeader className="flex flex-row items-center justify-between border-b border-slate-100 pb-4">
-              <h2 className="text-2xl font-bold text-primary-navy">Company Details</h2>
-              <Button variant="ghost" size="icon" className="text-slate-400 hover:text-primary-navy hover:bg-primary-navy/5 rounded-full">
+            <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-100 pb-3 sm:pb-4 px-4 sm:px-6">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-primary-navy mb-2 sm:mb-0">Company Details</h2>
+              <Button variant="ghost" size="icon" className="text-slate-400 hover:text-primary-navy hover:bg-primary-navy/5 rounded-full self-start sm:self-auto">
                 <Edit className="h-4 w-4" />
               </Button>
             </CardHeader>
-            <CardContent className="pt-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
+            <CardContent className="pt-4 sm:pt-6 px-4 sm:px-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-2">Industry</h3>
-                    <p className="text-slate-600 font-semibold">Technology, Software Development</p>
+                    <h3 className="text-sm font-bold text-slate-900 mb-1 sm:mb-2">Industry</h3>
+                    <p className="text-slate-600 font-semibold text-sm sm:text-base">Technology, Software Development</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-2">Company Size</h3>
-                    <p className="text-slate-600 font-semibold">201-500 employees</p>
+                    <h3 className="text-sm font-bold text-slate-900 mb-1 sm:mb-2">Company Size</h3>
+                    <p className="text-slate-600 font-semibold text-sm sm:text-base">201-500 employees</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-2">Company Type</h3>
-                    <p className="text-slate-600 font-semibold">Private Company</p>
+                    <h3 className="text-sm font-bold text-slate-900 mb-1 sm:mb-2">Company Type</h3>
+                    <p className="text-slate-600 font-semibold text-sm sm:text-base">Private Company</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-2">Founded</h3>
-                    <p className="text-slate-600 font-semibold">2015</p>
+                    <h3 className="text-sm font-bold text-slate-900 mb-1 sm:mb-2">Founded</h3>
+                    <p className="text-slate-600 font-semibold text-sm sm:text-base">2015</p>
                   </div>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-2">Headquarters</h3>
-                    <p className="text-slate-600 font-semibold">San Francisco, California, USA</p>
+                    <h3 className="text-sm font-bold text-slate-900 mb-1 sm:mb-2">Headquarters</h3>
+                    <p className="text-slate-600 font-semibold text-sm sm:text-base">San Francisco, California, USA</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-2">Funding Stage</h3>
-                    <p className="text-slate-600 font-semibold">Series C</p>
+                    <h3 className="text-sm font-bold text-slate-900 mb-1 sm:mb-2">Funding Stage</h3>
+                    <p className="text-slate-600 font-semibold text-sm sm:text-base">Series C</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-2">Total Funding</h3>
-                    <p className="text-slate-600 font-semibold">$50.2M</p>
+                    <h3 className="text-sm font-bold text-slate-900 mb-1 sm:mb-2">Total Funding</h3>
+                    <p className="text-slate-600 font-semibold text-sm sm:text-base">$50.2M</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 mb-2">Specialties</h3>
-                    <p className="text-slate-600 font-semibold">Cloud Computing, AI/ML, Enterprise Software</p>
+                    <h3 className="text-sm font-bold text-slate-900 mb-1 sm:mb-2">Specialties</h3>
+                    <p className="text-slate-600 font-semibold text-sm sm:text-base">Cloud Computing, AI/ML, Enterprise Software</p>
                   </div>
                 </div>
               </div>
@@ -240,74 +230,74 @@ export default function CompanyProfilePage() {
 
           {/* Open Positions */}
           <Card className="border-slate-200 shadow-sm">
-            <CardHeader className="flex flex-row items-center justify-between border-b border-slate-100 pb-4">
-              <h2 className="text-2xl font-bold text-primary-navy">Open Positions</h2>
-              <Button variant="ghost" size="icon" className="text-slate-400 hover:text-primary-navy hover:bg-primary-navy/5 rounded-full">
+            <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-100 pb-3 sm:pb-4 px-4 sm:px-6">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-primary-navy mb-2 sm:mb-0">Open Positions</h2>
+              <Button variant="ghost" size="icon" className="text-slate-400 hover:text-primary-navy hover:bg-primary-navy/5 rounded-full self-start sm:self-auto">
                 <Plus className="h-4 w-4" />
               </Button>
             </CardHeader>
-            <CardContent className="pt-6 space-y-6">
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 border border-slate-200 rounded-xl hover:border-primary-navy/30 transition-colors">
-                  <div className="flex items-center space-x-4">
-                    <div className="h-12 w-12 bg-gradient-to-br from-primary-navy to-[#0056B3] rounded-lg flex items-center justify-center">
-                      <Briefcase className="h-6 w-6 text-white" />
+            <CardContent className="pt-4 sm:pt-6 space-y-4 sm:space-y-6 px-4 sm:px-6">
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 border border-slate-200 rounded-xl hover:border-primary-navy/30 transition-colors space-y-3 sm:space-y-0">
+                  <div className="flex items-start sm:items-center space-x-3 sm:space-x-4 flex-1">
+                    <div className="h-10 w-10 sm:h-12 sm:w-12 bg-gradient-to-br from-primary-navy to-[#0056B3] rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Briefcase className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-primary-navy">Senior Software Engineer</h3>
-                      <p className="text-slate-600 font-semibold text-sm">Engineering • Full-time • San Francisco, CA</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-primary-navy text-sm sm:text-base">Senior Software Engineer</h3>
+                      <p className="text-slate-600 font-semibold text-xs sm:text-sm">Engineering • Full-time • San Francisco, CA</p>
                       <p className="text-slate-500 font-semibold text-xs">Posted 2 days ago</p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
                     <Badge className="bg-green-50 text-green-700 border-green-200 font-bold text-xs">12 applicants</Badge>
-                    <Button size="sm" variant="outline" className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-bold text-xs">
+                    <Button size="sm" variant="outline" className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-bold text-xs w-full sm:w-auto">
                       View Details
                     </Button>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between p-4 border border-slate-200 rounded-xl hover:border-primary-navy/30 transition-colors">
-                  <div className="flex items-center space-x-4">
-                    <div className="h-12 w-12 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center">
-                      <Users className="h-6 w-6 text-white" />
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 border border-slate-200 rounded-xl hover:border-primary-navy/30 transition-colors space-y-3 sm:space-y-0">
+                  <div className="flex items-start sm:items-center space-x-3 sm:space-x-4 flex-1">
+                    <div className="h-10 w-10 sm:h-12 sm:w-12 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Users className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-primary-navy">Product Manager</h3>
-                      <p className="text-slate-600 font-semibold text-sm">Product • Full-time • Remote</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-primary-navy text-sm sm:text-base">Product Manager</h3>
+                      <p className="text-slate-600 font-semibold text-xs sm:text-sm">Product • Full-time • Remote</p>
                       <p className="text-slate-500 font-semibold text-xs">Posted 5 days ago</p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
                     <Badge className="bg-yellow-50 text-yellow-700 border-yellow-200 font-bold text-xs">24 applicants</Badge>
-                    <Button size="sm" variant="outline" className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-bold text-xs">
+                    <Button size="sm" variant="outline" className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-bold text-xs w-full sm:w-auto">
                       View Details
                     </Button>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between p-4 border border-slate-200 rounded-xl hover:border-primary-navy/30 transition-colors">
-                  <div className="flex items-center space-x-4">
-                    <div className="h-12 w-12 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
-                      <Target className="h-6 w-6 text-white" />
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 border border-slate-200 rounded-xl hover:border-primary-navy/30 transition-colors space-y-3 sm:space-y-0">
+                  <div className="flex items-start sm:items-center space-x-3 sm:space-x-4 flex-1">
+                    <div className="h-10 w-10 sm:h-12 sm:w-12 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Target className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-primary-navy">UX Designer</h3>
-                      <p className="text-slate-600 font-semibold text-sm">Design • Full-time • New York, NY</p>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-primary-navy text-sm sm:text-base">UX Designer</h3>
+                      <p className="text-slate-600 font-semibold text-xs sm:text-sm">Design • Full-time • New York, NY</p>
                       <p className="text-slate-500 font-semibold text-xs">Posted 1 week ago</p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
                     <Badge className="bg-blue-50 text-blue-700 border-blue-200 font-bold text-xs">8 applicants</Badge>
-                    <Button size="sm" variant="outline" className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-bold text-xs">
+                    <Button size="sm" variant="outline" className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-bold text-xs w-full sm:w-auto">
                       View Details
                     </Button>
                   </div>
                 </div>
               </div>
               
-              <div className="text-center pt-4">
-                <Button variant="outline" className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-bold">
+              <div className="text-center pt-2 sm:pt-4">
+                <Button variant="outline" className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-bold text-sm w-full sm:w-auto">
                   View All Open Positions (12)
                 </Button>
               </div>
