@@ -3,6 +3,7 @@ import type { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
 import { Inter, Lora, Abhaya_Libre } from "next/font/google"
 import "./globals.css"
 import HeaderWrapper from "@/components/header-wrapper"
+import MobileFooter from "@/components/mobile-footer"
 
 const inter = Inter({ subsets: ["latin"] })
 const lora = Lora({ 
@@ -30,9 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body className={`${inter.className} ${lora.variable} ${abhayaLibre.variable}`}>
-        <div className="flex flex-col h-screen overflow-hidden bg-background">
+        <div className="min-h-screen bg-background">
           <HeaderWrapper />
-          <main className="flex-1 overflow-auto px-2 md:px-4 py-2 md:py-3">{children}</main>
+          <main className="px-2 md:px-4 py-2 md:py-3 pb-16 md:pb-3">{children}</main>
+          <MobileFooter />
           </div>
       </body>
     </html>

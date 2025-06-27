@@ -70,25 +70,26 @@ export default function ProfilePage() {
       <div className="w-full sm:bg-white sm:border-b sm:border-slate-200 sm:shadow-sm">
         <div className="max-w-4xl mx-auto px-0 sm:px-3 md:px-4 lg:px-6">
           <div className="relative">
-            {/* Modern Cover Photo - Hidden on mobile */}
-            <div className="hidden sm:block h-40 md:h-48 lg:h-56 bg-gradient-to-br from-primary-navy via-[#0056B3] to-slate-600 relative rounded-b-lg overflow-hidden">
+            {/* Modern Cover Photo */}
+            <div className="h-32 sm:h-40 md:h-48 lg:h-56 bg-gradient-to-br from-primary-navy via-[#0056B3] to-slate-600 relative sm:rounded-b-lg overflow-hidden">
               <div className="absolute inset-0 bg-black/20"></div>
               <Button
                 size="sm"
                 variant="secondary"
-                className="absolute top-3 right-3 md:top-4 md:right-4 bg-white/90 hover:bg-white text-slate-700 rounded-lg font-subheading text-xs sm:text-sm"
+                className="absolute top-2 right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 bg-white/90 hover:bg-white text-slate-700 rounded-lg font-subheading text-xs sm:text-sm"
               >
-                <Camera className="h-4 w-4 mr-2" />
+                <Camera className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                 <span className="hidden sm:inline">Edit Cover</span>
+                <span className="sm:hidden">Edit</span>
               </Button>
             </div>
 
             {/* Enhanced Profile Section */}
-            <div className="relative pb-6 sm:pb-8 pt-4 sm:pt-0">
+            <div className="relative pb-6 sm:pb-8">
               <div className="flex flex-col sm:flex-row sm:items-end sm:space-x-4 md:space-x-6 lg:space-x-8">
                 {/* Profile Picture */}
-                <div className="relative mb-4 sm:mb-0 sm:-mt-12 md:-mt-14 lg:-mt-16 flex-shrink-0">
-                  <Avatar className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 lg:h-36 lg:w-36 sm:border-4 sm:border-white sm:shadow-xl">
+                <div className="relative mb-4 sm:mb-0 -mt-12 sm:-mt-14 md:-mt-16 flex-shrink-0 ml-4 sm:ml-0">
+                  <Avatar className="h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 lg:h-36 lg:w-36 border-4 border-white shadow-xl">
                     <AvatarImage src="/professional-user-avatar.png" alt={profileData.name} />
                     <AvatarFallback className="text-lg sm:text-xl md:text-2xl font-heading bg-gradient-to-br from-primary-navy to-[#0056B3] text-white">
                       {getInitials(profileData.name)}
@@ -104,7 +105,7 @@ export default function ProfilePage() {
                 </div>
 
                 {/* Profile Info */}
-                <div className="flex-1 mt-2 sm:mt-4 md:mt-6 lg:mt-8">
+                <div className="flex-1 mt-2 sm:mt-4 md:mt-6 lg:mt-8 px-4 sm:px-0">
                   <div className="flex flex-col">
                     <div className="mb-3 sm:mb-4">
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 sm:mb-3">

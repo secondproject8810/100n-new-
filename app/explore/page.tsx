@@ -359,8 +359,8 @@ export default function ExplorePage() {
       <div className="text-center mb-6 sm:mb-8 md:mb-12 mt-8 sm:mt-12 md:mt-16">
         {/* Logo */}
         <div className="mb-3 sm:mb-4">
-          <span className="font-logo text-3xl sm:text-4xl md:text-5xl font-bold">
-            100<span className="text-[#0056B3]">Networks</span>
+          <span className="text-3xl sm:text-4xl md:text-5xl font-bold" style={{fontFamily: 'Paradose, sans-serif'}}>
+                          <span style={{fontFamily: 'Montserrat, sans-serif', fontWeight: 900, fontStyle: 'italic'}}>100<span className="text-[#0056B3]">Networks</span></span>
           </span>
         </div>
         
@@ -454,7 +454,7 @@ export default function ExplorePage() {
       <Tabs defaultValue="recommended" className="mb-4 sm:mb-6 md:mb-8">
         <TabsList className="grid w-full grid-cols-3 mb-3 sm:mb-4 md:mb-6 h-auto">
           <TabsTrigger value="recommended" className="font-subheading font-bold data-[state=active]:bg-primary-navy data-[state=active]:text-white text-xs sm:text-sm py-2 sm:py-3">Recommended</TabsTrigger>
-          <TabsTrigger value="trailing" className="font-subheading font-bold data-[state=active]:bg-primary-navy data-[state=active]:text-white text-xs sm:text-sm py-2 sm:py-3">Trending</TabsTrigger>
+          <TabsTrigger value="trending" className="font-subheading font-bold data-[state=active]:bg-primary-navy data-[state=active]:text-white text-xs sm:text-sm py-2 sm:py-3">Trending</TabsTrigger>
           <TabsTrigger value="nearby" className="font-subheading font-bold data-[state=active]:bg-primary-navy data-[state=active]:text-white text-xs sm:text-sm py-2 sm:py-3">Nearby</TabsTrigger>
         </TabsList>
 
@@ -663,55 +663,55 @@ export default function ExplorePage() {
     {/* Job Details Modal */}
     {selectedJob && !showApplicationModal && (
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
-        <div className="bg-white rounded-xl sm:rounded-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
-          <div className="p-4 sm:p-6">
+        <div className="bg-white rounded-xl sm:rounded-2xl max-w-4xl w-full max-h-[75vh] sm:max-h-[70vh] overflow-y-auto">
+          <div className="p-2 sm:p-3">
             {/* Header */}
-            <div className="flex items-center justify-between mb-4 sm:mb-6">
-              <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
+              <div className="flex items-center space-x-2 flex-1 min-w-0">
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setSelectedJob(null)}
-                  className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading font-bold h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0"
+                  className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading font-bold h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0"
                 >
-                  <X className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <X className="h-3 w-3 sm:h-4 sm:w-4" />
                 </Button>
-                <h1 className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy font-bold truncate">Job Details</h1>
+                <h1 className="text-base sm:text-lg md:text-xl font-heading text-primary-navy font-bold truncate">Job Details</h1>
               </div>
             </div>
 
             {/* Job Content */}
-            <div className="space-y-4 sm:space-y-6">
+            <div className="space-y-2 sm:space-y-3">
               {/* Basic Info */}
-              <div className="flex flex-col sm:flex-row sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
-                <img src={selectedJob.logo} alt={selectedJob.company} className="h-12 w-12 sm:h-16 sm:w-16 rounded-xl self-center sm:self-start flex-shrink-0" />
+              <div className="flex flex-col sm:flex-row sm:items-start space-y-2 sm:space-y-0 sm:space-x-3">
+                <img src={selectedJob.logo} alt={selectedJob.company} className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl self-center sm:self-start flex-shrink-0" />
                 <div className="flex-1 text-center sm:text-left">
-                  <h2 className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy mb-1 font-bold">{selectedJob.title}</h2>
-                  <p className="text-base sm:text-lg text-slate-600 font-subheading mb-2 sm:mb-3 font-bold">{selectedJob.company}</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 text-slate-600 font-subheading mb-4 font-bold text-sm sm:text-base">
-                    <div className="flex items-center space-x-2">
-                      <Building2 className="h-4 w-4 text-slate-500" />
-                      <span className="font-bold">{selectedJob.industry}</span>
+                  <h2 className="text-base sm:text-lg md:text-xl font-heading text-primary-navy mb-1 font-bold">{selectedJob.title}</h2>
+                  <p className="text-sm sm:text-base text-slate-600 font-subheading mb-1 sm:mb-2 font-bold">{selectedJob.company}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 text-slate-600 font-subheading mb-2 font-bold text-xs sm:text-sm">
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <Building2 className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="font-bold truncate">{selectedJob.industry}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4 text-slate-500" />
-                      <span className="font-bold">{selectedJob.location}</span>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="font-bold truncate">{selectedJob.location}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <DollarSign className="h-4 w-4 text-slate-500" />
-                      <span className="font-bold">{selectedJob.salaryRange}</span>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <DollarSign className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="font-bold text-xs sm:text-sm truncate">{selectedJob.salaryRange}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Clock className="h-4 w-4 text-slate-500" />
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <Clock className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
                       <span className="font-bold">{selectedJob.type}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4 text-slate-500" />
-                      <span className="font-bold">Posted {selectedJob.posted}</span>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="font-bold text-xs sm:text-sm">Posted {selectedJob.posted}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Users className="h-4 w-4 text-slate-500" />
-                      <span className="font-bold">{selectedJob.companyInfo.size}</span>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <Users className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="font-bold text-xs sm:text-sm">{selectedJob.companyInfo.size}</span>
                     </div>
                   </div>
                 </div>
@@ -721,76 +721,82 @@ export default function ExplorePage() {
 
               {/* Description */}
               <div>
-                <h3 className="text-lg font-heading text-primary-navy mb-3 font-bold">Job Description</h3>
-                <p className="text-slate-600 font-subheading leading-relaxed font-bold">{selectedJob.description}</p>
+                <h3 className="text-base sm:text-lg font-heading text-primary-navy mb-2 font-bold">Job Description</h3>
+                <p className="text-sm sm:text-base text-slate-600 font-subheading leading-relaxed font-bold">{selectedJob.description}</p>
               </div>
 
-              {/* Requirements */}
-              <div>
-                <h3 className="text-lg font-heading text-primary-navy mb-3 font-bold">Requirements</h3>
-                <div className="space-y-2">
-                  {selectedJob.requirements.map((req: string, index: number) => (
-                    <div key={index} className="flex items-start space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-500 mt-1 flex-shrink-0" />
-                      <span className="text-slate-600 font-subheading font-bold">{req}</span>
+              {/* Requirements & Responsibilities Combined */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {/* Requirements */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-heading text-primary-navy mb-2 font-bold">Requirements</h3>
+                  <div className="space-y-1.5">
+                    {selectedJob.requirements.map((req: string, index: number) => (
+                      <div key={index} className="flex items-start space-x-2">
+                        <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 mt-1 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm text-slate-600 font-subheading font-bold">{req}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Responsibilities */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-heading text-primary-navy mb-2 font-bold">Responsibilities</h3>
+                  <div className="space-y-1.5">
+                    {selectedJob.responsibilities.map((resp: string, index: number) => (
+                      <div key={index} className="flex items-start space-x-2">
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#0056B3] rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-xs sm:text-sm text-slate-600 font-subheading font-bold">{resp}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Company Info & Benefits Combined */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {/* Company Info */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-heading text-primary-navy mb-2 font-bold">About {selectedJob.company}</h3>
+                  <p className="text-xs sm:text-sm text-slate-600 font-subheading leading-relaxed mb-2 font-bold">{selectedJob.companyInfo.description}</p>
+                  <div className="grid grid-cols-1 gap-1 text-xs">
+                    <div className="text-center sm:text-left">
+                      <span className="text-slate-500 font-bold">Founded:</span>
+                      <span className="ml-2 text-slate-700 font-subheading font-bold">{selectedJob.companyInfo.founded}</span>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Responsibilities */}
-              <div>
-                <h3 className="text-lg font-heading text-primary-navy mb-3 font-bold">Responsibilities</h3>
-                <div className="space-y-2">
-                  {selectedJob.responsibilities.map((resp: string, index: number) => (
-                    <div key={index} className="flex items-start space-x-2">
-                      <div className="w-2 h-2 bg-[#0056B3] rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-slate-600 font-subheading font-bold">{resp}</span>
+                    <div className="text-center sm:text-left">
+                      <span className="text-slate-500 font-bold">Size:</span>
+                      <span className="ml-2 text-slate-700 font-subheading font-bold">{selectedJob.companyInfo.size}</span>
                     </div>
-                  ))}
-                </div>
-        </div>
-
-              {/* Company Info */}
-              <div>
-                <h3 className="text-lg font-heading text-primary-navy mb-3 font-bold">About {selectedJob.company}</h3>
-                <p className="text-slate-600 font-subheading leading-relaxed mb-3 font-bold">{selectedJob.companyInfo.description}</p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 text-xs sm:text-sm">
-                  <div className="text-center sm:text-left">
-                    <span className="text-slate-500 font-bold">Founded:</span>
-                    <span className="ml-2 text-slate-700 font-subheading font-bold">{selectedJob.companyInfo.founded}</span>
-                  </div>
-                  <div className="text-center sm:text-left">
-                    <span className="text-slate-500 font-bold">Size:</span>
-                    <span className="ml-2 text-slate-700 font-subheading font-bold">{selectedJob.companyInfo.size}</span>
-                  </div>
-                  <div className="text-center sm:text-left">
-                    <span className="text-slate-500 font-bold">Website:</span>
-                    <span className="ml-2 text-slate-700 font-subheading font-bold">{selectedJob.companyInfo.website}</span>
+                    <div className="text-center sm:text-left">
+                      <span className="text-slate-500 font-bold">Website:</span>
+                      <span className="ml-2 text-slate-700 font-subheading font-bold">{selectedJob.companyInfo.website}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Benefits */}
-              <div>
-                <h3 className="text-lg font-heading text-primary-navy mb-3 font-bold">Benefits</h3>
-                <div className="flex flex-wrap gap-2">
-                  {selectedJob.benefits.map((benefit: string, index: number) => (
-                    <Badge key={index} className="bg-green-100 text-green-700 font-subheading font-bold">
-                      <Award className="h-3 w-3 mr-1" />
-                      {benefit}
-                    </Badge>
-                  ))}
+                {/* Benefits */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-heading text-primary-navy mb-2 font-bold">Benefits</h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedJob.benefits.map((benefit: string, index: number) => (
+                      <Badge key={index} className="bg-green-100 text-green-700 font-subheading font-bold text-xs">
+                        <Award className="h-2.5 w-2.5 mr-1" />
+                        {benefit}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Apply Button */}
-              <div className="pt-4">
+              <div className="pt-3">
                 <Button 
-                  className="w-full bg-primary-navy hover:bg-slate-800 text-white rounded-xl font-subheading font-bold"
+                  className="w-full bg-primary-navy hover:bg-slate-800 text-white rounded-xl font-subheading font-bold text-sm sm:text-base py-2.5"
                   onClick={handleApplyClick}
                 >
-                  <Target className="h-4 w-4 mr-2" />
+                  <Target className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                   Apply for this Position
                 </Button>
               </div>
@@ -803,55 +809,47 @@ export default function ExplorePage() {
     {/* Freelance Project Details Modal */}
     {selectedProject && !showProjectApplicationModal && (
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
-        <div className="bg-white rounded-xl sm:rounded-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
-          <div className="p-4 sm:p-6">
+        <div className="bg-white rounded-xl sm:rounded-2xl max-w-4xl w-full max-h-[75vh] sm:max-h-[70vh] overflow-y-auto">
+          <div className="p-2 sm:p-3">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-3">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
+              <div className="flex items-center space-x-2 flex-1 min-w-0">
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setSelectedProject(null)}
-                  className="rounded-xl"
+                  className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading font-bold h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0"
                 >
-                  <ArrowLeft className="h-5 w-5" />
+                  <X className="h-3 w-3 sm:h-4 sm:w-4" />
                 </Button>
-                <h1 className="text-2xl font-heading text-primary-navy font-bold">Project Details</h1>
+                <h1 className="text-base sm:text-lg md:text-xl font-heading text-primary-navy font-bold truncate">Project Details</h1>
               </div>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setSelectedProject(null)}
-                className="rounded-xl"
-              >
-                <X className="h-5 w-5" />
-              </Button>
             </div>
 
             {/* Project Content */}
-            <div className="space-y-6">
+            <div className="space-y-2 sm:space-y-3">
               {/* Basic Info */}
-              <div className="flex items-start space-x-4">
-                <img src={selectedProject.logo} alt={selectedProject.company} className="h-16 w-16 rounded-xl" />
-                <div className="flex-1">
-                  <h2 className="text-2xl font-heading text-primary-navy mb-1">{selectedProject.title}</h2>
-                  <p className="text-lg text-slate-600 font-subheading mb-2">{selectedProject.company}</p>
-                  <div className="grid grid-cols-2 gap-4 text-slate-600 font-subheading mb-4">
-                    <div className="flex items-center space-x-2">
-                      <Building2 className="h-4 w-4 text-slate-500" />
-                      <span>{selectedProject.industry}</span>
+              <div className="flex flex-col sm:flex-row sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
+                <img src={selectedProject.logo} alt={selectedProject.company} className="h-12 w-12 sm:h-16 sm:w-16 rounded-xl self-center sm:self-start flex-shrink-0" />
+                <div className="flex-1 text-center sm:text-left">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy mb-1">{selectedProject.title}</h2>
+                  <p className="text-base sm:text-lg text-slate-600 font-subheading mb-2 sm:mb-3">{selectedProject.company}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4 text-slate-600 font-subheading mb-4 text-xs sm:text-sm md:text-base">
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <Building2 className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="truncate">{selectedProject.industry}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <DollarSign className="h-4 w-4 text-slate-500" />
-                      <span>{selectedProject.budget}</span>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <DollarSign className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="truncate">{selectedProject.budget}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Clock className="h-4 w-4 text-slate-500" />
-                      <span>{selectedProject.duration}</span>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <Clock className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="truncate">{selectedProject.duration}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4 text-slate-500" />
-                      <span>Posted {selectedProject.posted}</span>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm">Posted {selectedProject.posted}</span>
                     </div>
                   </div>
                 </div>
@@ -861,75 +859,81 @@ export default function ExplorePage() {
 
               {/* Description */}
               <div>
-                <h3 className="text-lg font-heading text-primary-navy mb-3">Project Description</h3>
-                <p className="text-slate-600 font-subheading leading-relaxed">{selectedProject.description}</p>
+                <h3 className="text-base sm:text-lg font-heading text-primary-navy mb-2">Project Description</h3>
+                <p className="text-sm sm:text-base text-slate-600 font-subheading leading-relaxed">{selectedProject.description}</p>
               </div>
 
-              {/* Requirements */}
-              <div>
-                <h3 className="text-lg font-heading text-primary-navy mb-3">Requirements</h3>
-                <div className="space-y-2">
-                  {selectedProject.requirements.map((req: string, index: number) => (
-                    <div key={index} className="flex items-start space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-500 mt-1 flex-shrink-0" />
-                      <span className="text-slate-600 font-subheading">{req}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Deliverables */}
-              <div>
-                <h3 className="text-lg font-heading text-primary-navy mb-3">Deliverables</h3>
-                <div className="space-y-2">
-                  {selectedProject.deliverables.map((deliverable: string, index: number) => (
-                    <div key={index} className="flex items-start space-x-2">
-                      <div className="w-2 h-2 bg-[#0056B3] rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-slate-600 font-subheading">{deliverable}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Required Skills */}
-              <div>
-                <h3 className="text-lg font-heading text-primary-navy mb-3">Required Skills</h3>
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.skills.map((skill: string, index: number) => (
-                    <Badge key={index} className="bg-blue-100 text-blue-700 font-subheading">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              {/* Company Info */}
-              <div>
-                <h3 className="text-lg font-heading text-primary-navy mb-3">About {selectedProject.company}</h3>
-                <p className="text-slate-600 font-subheading leading-relaxed mb-3">{selectedProject.companyInfo.description}</p>
-                <div className="grid grid-cols-3 gap-4 text-sm">
-                  <div>
-                    <span className="text-slate-500">Founded:</span>
-                    <span className="ml-2 text-slate-700 font-subheading">{selectedProject.companyInfo.founded}</span>
+              {/* Requirements & Deliverables Combined */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {/* Requirements */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-heading text-primary-navy mb-2">Requirements</h3>
+                  <div className="space-y-1.5">
+                    {selectedProject.requirements.map((req: string, index: number) => (
+                      <div key={index} className="flex items-start space-x-2">
+                        <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 mt-1 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm text-slate-600 font-subheading">{req}</span>
+                      </div>
+                    ))}
                   </div>
-                  <div>
-                    <span className="text-slate-500">Size:</span>
-                    <span className="ml-2 text-slate-700 font-subheading">{selectedProject.companyInfo.size}</span>
+                </div>
+
+                {/* Deliverables */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-heading text-primary-navy mb-2">Deliverables</h3>
+                  <div className="space-y-1.5">
+                    {selectedProject.deliverables.map((deliverable: string, index: number) => (
+                      <div key={index} className="flex items-start space-x-2">
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#0056B3] rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-xs sm:text-sm text-slate-600 font-subheading">{deliverable}</span>
+                      </div>
+                    ))}
                   </div>
-                  <div>
-                    <span className="text-slate-500">Website:</span>
-                    <span className="ml-2 text-slate-700 font-subheading">{selectedProject.companyInfo.website}</span>
+                </div>
+              </div>
+
+              {/* Skills & Company Info Combined */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                {/* Required Skills */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-heading text-primary-navy mb-2">Required Skills</h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedProject.skills.map((skill: string, index: number) => (
+                      <Badge key={index} className="bg-blue-100 text-blue-700 font-subheading text-xs">
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Company Info */}
+                <div>
+                  <h3 className="text-base sm:text-lg font-heading text-primary-navy mb-2">About {selectedProject.company}</h3>
+                  <p className="text-xs sm:text-sm text-slate-600 font-subheading leading-relaxed mb-2">{selectedProject.companyInfo.description}</p>
+                  <div className="grid grid-cols-1 gap-1 text-xs">
+                    <div className="text-center sm:text-left">
+                      <span className="text-slate-500">Founded:</span>
+                      <span className="ml-2 text-slate-700 font-subheading">{selectedProject.companyInfo.founded}</span>
+                    </div>
+                    <div className="text-center sm:text-left">
+                      <span className="text-slate-500">Size:</span>
+                      <span className="ml-2 text-slate-700 font-subheading">{selectedProject.companyInfo.size}</span>
+                    </div>
+                    <div className="text-center sm:text-left">
+                      <span className="text-slate-500">Website:</span>
+                      <span className="ml-2 text-slate-700 font-subheading">{selectedProject.companyInfo.website}</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Apply Button */}
-              <div className="pt-4">
+              <div className="pt-3">
                 <Button 
-                  className="w-full bg-primary-navy hover:bg-slate-800 text-white rounded-xl font-subheading font-bold"
+                  className="w-full bg-primary-navy hover:bg-slate-800 text-white rounded-xl font-subheading font-bold text-sm sm:text-base py-2.5"
                   onClick={handleProjectApplyClick}
                 >
-                  <Send className="h-4 w-4 mr-2" />
+                  <Send className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                   Submit Proposal
                 </Button>
               </div>
@@ -941,14 +945,14 @@ export default function ExplorePage() {
 
     {/* Job Application Modal */}
     <Dialog open={showApplicationModal} onOpenChange={setShowApplicationModal}>
-      <DialogContent className="max-w-2xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto mx-2 sm:mx-auto">
-        <DialogHeader>
-          <DialogTitle className="font-heading text-primary-navy">
+      <DialogContent className="max-w-lg sm:max-w-2xl max-h-[80vh] sm:max-h-[75vh] overflow-y-auto mx-2 sm:mx-auto p-3 sm:p-4">
+        <DialogHeader className="pb-2">
+          <DialogTitle className="font-heading text-primary-navy text-base sm:text-lg">
             Apply for {selectedJob?.title}
           </DialogTitle>
         </DialogHeader>
         
-        <div className="space-y-6 mt-4">
+        <div className="space-y-3 mt-2">
           {/* Job Info */}
           {selectedJob && (
             <Card className="border-slate-200 bg-slate-50">
@@ -966,65 +970,68 @@ export default function ExplorePage() {
 
           {/* Cover Letter */}
           <div>
-            <Label htmlFor="coverLetter" className="font-subheading text-primary-navy">Cover Letter</Label>
+            <Label htmlFor="coverLetter" className="font-subheading text-primary-navy text-xs sm:text-sm">Cover Letter</Label>
             <Textarea
               id="coverLetter"
               placeholder="Tell us why you're the perfect fit for this role..."
               value={applicationData.coverLetter}
               onChange={(e) => setApplicationData({...applicationData, coverLetter: e.target.value})}
-              className="mt-2 min-h-[120px] rounded-xl font-subheading"
+              className="mt-1 min-h-[60px] sm:min-h-[80px] rounded-lg font-subheading text-xs sm:text-sm"
             />
           </div>
 
-          {/* Expected Salary */}
-          <div>
-            <Label htmlFor="salary" className="font-subheading text-primary-navy">Expected Salary</Label>
-            <Input
-              id="salary"
-              placeholder="e.g., $120,000"
-              value={applicationData.expectedSalary}
-              onChange={(e) => setApplicationData({...applicationData, expectedSalary: e.target.value})}
-              className="mt-2 rounded-xl font-subheading"
-            />
-          </div>
+          {/* Salary & Date Row */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* Expected Salary */}
+            <div>
+              <Label htmlFor="salary" className="font-subheading text-primary-navy text-xs sm:text-sm">Expected Salary</Label>
+              <Input
+                id="salary"
+                placeholder="e.g., $120,000"
+                value={applicationData.expectedSalary}
+                onChange={(e) => setApplicationData({...applicationData, expectedSalary: e.target.value})}
+                className="mt-1 rounded-lg font-subheading text-xs sm:text-sm py-1.5 sm:py-2"
+              />
+            </div>
 
-          {/* Start Date */}
-          <div>
-            <Label htmlFor="startDate" className="font-subheading text-primary-navy">Available Start Date</Label>
-            <Input
-              id="startDate"
-              type="date"
-              value={applicationData.startDate}
-              onChange={(e) => setApplicationData({...applicationData, startDate: e.target.value})}
-              className="mt-2 rounded-xl font-subheading"
-            />
+            {/* Start Date */}
+            <div>
+              <Label htmlFor="startDate" className="font-subheading text-primary-navy text-xs sm:text-sm">Available Start Date</Label>
+              <Input
+                id="startDate"
+                type="date"
+                value={applicationData.startDate}
+                onChange={(e) => setApplicationData({...applicationData, startDate: e.target.value})}
+                className="mt-1 rounded-lg font-subheading text-xs sm:text-sm py-1.5 sm:py-2"
+              />
+            </div>
           </div>
 
           {/* Resume Upload */}
           <div>
-            <Label className="font-subheading text-primary-navy">Resume</Label>
-            <div className="mt-2 border-2 border-dashed border-slate-200 rounded-xl p-6 text-center">
-              <Upload className="h-8 w-8 text-slate-400 mx-auto mb-2" />
-              <p className="text-slate-600 font-subheading">Click to upload your resume</p>
-              <p className="text-slate-400 font-subheading text-sm">PDF, DOC, or DOCX (max 5MB)</p>
+            <Label className="font-subheading text-primary-navy text-xs sm:text-sm">Resume</Label>
+            <div className="mt-1 border-2 border-dashed border-slate-200 rounded-lg p-3 sm:p-4 text-center">
+              <Upload className="h-4 w-4 sm:h-5 sm:w-5 text-slate-400 mx-auto mb-1" />
+              <p className="text-slate-600 font-subheading text-xs sm:text-sm">Upload resume</p>
+              <p className="text-slate-400 font-subheading text-xs">PDF, DOC, DOCX (max 5MB)</p>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex space-x-4 pt-4">
+          <div className="flex space-x-3 pt-3">
             <Button 
               variant="outline" 
-              className="flex-1 rounded-xl font-subheading font-bold"
+              className="flex-1 rounded-lg font-subheading font-bold text-xs sm:text-sm py-2"
               onClick={() => setShowApplicationModal(false)}
             >
               Cancel
             </Button>
             <Button 
-              className="flex-1 bg-primary-navy hover:bg-slate-800 text-white rounded-xl font-subheading font-bold"
+              className="flex-1 bg-primary-navy hover:bg-slate-800 text-white rounded-lg font-subheading font-bold text-xs sm:text-sm py-2"
               onClick={handleSubmitApplication}
             >
-              <Send className="h-4 w-4 mr-2" />
-              Submit Application
+              <Send className="h-3 w-3 mr-1" />
+              Submit
             </Button>
           </div>
         </div>
@@ -1033,14 +1040,14 @@ export default function ExplorePage() {
 
     {/* Project Application Modal */}
     <Dialog open={showProjectApplicationModal} onOpenChange={setShowProjectApplicationModal}>
-      <DialogContent className="max-w-2xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto mx-2 sm:mx-auto">
-        <DialogHeader>
-          <DialogTitle className="font-heading text-primary-navy">
+      <DialogContent className="max-w-lg sm:max-w-2xl max-h-[80vh] sm:max-h-[75vh] overflow-y-auto mx-2 sm:mx-auto p-3 sm:p-4">
+        <DialogHeader className="pb-2">
+          <DialogTitle className="font-heading text-primary-navy text-base sm:text-lg">
             Submit Proposal for {selectedProject?.title}
           </DialogTitle>
         </DialogHeader>
         
-        <div className="space-y-6 mt-4">
+        <div className="space-y-3 mt-2">
           {/* Project Info */}
           {selectedProject && (
             <Card className="border-slate-200 bg-slate-50">
@@ -1058,65 +1065,68 @@ export default function ExplorePage() {
 
           {/* Proposal */}
           <div>
-            <Label htmlFor="proposal" className="font-subheading text-primary-navy">Project Proposal</Label>
+            <Label htmlFor="proposal" className="font-subheading text-primary-navy text-xs sm:text-sm">Project Proposal</Label>
             <Textarea
               id="proposal"
               placeholder="Describe your approach to this project..."
               value={projectApplicationData.proposal}
               onChange={(e) => setProjectApplicationData({...projectApplicationData, proposal: e.target.value})}
-              className="mt-2 min-h-[120px] rounded-xl font-subheading"
+              className="mt-1 min-h-[60px] sm:min-h-[80px] rounded-lg font-subheading text-xs sm:text-sm"
             />
           </div>
 
-          {/* Budget */}
-          <div>
-            <Label htmlFor="budget" className="font-subheading text-primary-navy">Your Budget Estimate</Label>
-            <Input
-              id="budget"
-              placeholder="e.g., $4,500"
-              value={projectApplicationData.estimatedBudget}
-              onChange={(e) => setProjectApplicationData({...projectApplicationData, estimatedBudget: e.target.value})}
-              className="mt-2 rounded-xl font-subheading"
-            />
-          </div>
+          {/* Budget & Timeline Row */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* Budget */}
+            <div>
+              <Label htmlFor="budget" className="font-subheading text-primary-navy text-xs sm:text-sm">Budget Estimate</Label>
+              <Input
+                id="budget"
+                placeholder="e.g., $4,500"
+                value={projectApplicationData.estimatedBudget}
+                onChange={(e) => setProjectApplicationData({...projectApplicationData, estimatedBudget: e.target.value})}
+                className="mt-1 rounded-lg font-subheading text-xs sm:text-sm py-1.5 sm:py-2"
+              />
+            </div>
 
-          {/* Timeline */}
-          <div>
-            <Label htmlFor="timeline" className="font-subheading text-primary-navy">Estimated Timeline</Label>
-            <Input
-              id="timeline"
-              placeholder="e.g., 3-4 weeks"
-              value={projectApplicationData.timeline}
-              onChange={(e) => setProjectApplicationData({...projectApplicationData, timeline: e.target.value})}
-              className="mt-2 rounded-xl font-subheading"
-            />
+            {/* Timeline */}
+            <div>
+              <Label htmlFor="timeline" className="font-subheading text-primary-navy text-xs sm:text-sm">Timeline</Label>
+              <Input
+                id="timeline"
+                placeholder="e.g., 3-4 weeks"
+                value={projectApplicationData.timeline}
+                onChange={(e) => setProjectApplicationData({...projectApplicationData, timeline: e.target.value})}
+                className="mt-1 rounded-lg font-subheading text-xs sm:text-sm py-1.5 sm:py-2"
+              />
+            </div>
           </div>
 
           {/* Portfolio Upload */}
           <div>
-            <Label className="font-subheading text-primary-navy">Portfolio/Previous Work</Label>
-            <div className="mt-2 border-2 border-dashed border-slate-200 rounded-xl p-6 text-center">
-              <Upload className="h-8 w-8 text-slate-400 mx-auto mb-2" />
-              <p className="text-slate-600 font-subheading">Upload portfolio or work samples</p>
-              <p className="text-slate-400 font-subheading text-sm">PDF, Images, or ZIP (max 10MB)</p>
+            <Label className="font-subheading text-primary-navy text-xs sm:text-sm">Portfolio</Label>
+            <div className="mt-1 border-2 border-dashed border-slate-200 rounded-lg p-3 sm:p-4 text-center">
+              <Upload className="h-4 w-4 sm:h-5 sm:w-5 text-slate-400 mx-auto mb-1" />
+              <p className="text-slate-600 font-subheading text-xs sm:text-sm">Upload portfolio</p>
+              <p className="text-slate-400 font-subheading text-xs">PDF, Images, ZIP (max 10MB)</p>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex space-x-4 pt-4">
+          <div className="flex space-x-3 pt-3">
             <Button 
               variant="outline" 
-              className="flex-1 rounded-xl font-subheading font-bold"
+              className="flex-1 rounded-lg font-subheading font-bold text-xs sm:text-sm py-2"
               onClick={() => setShowProjectApplicationModal(false)}
             >
               Cancel
             </Button>
             <Button 
-              className="flex-1 bg-primary-navy hover:bg-slate-800 text-white rounded-xl font-subheading font-bold"
+              className="flex-1 bg-primary-navy hover:bg-slate-800 text-white rounded-lg font-subheading font-bold text-xs sm:text-sm py-2"
               onClick={handleSubmitProjectApplication}
             >
-              <Send className="h-4 w-4 mr-2" />
-              Submit Proposal
+              <Send className="h-3 w-3 mr-1" />
+              Submit
             </Button>
           </div>
         </div>
@@ -1126,71 +1136,65 @@ export default function ExplorePage() {
     {/* Company Details Modal */}
     {selectedCompany && !showJobsModal && (
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
-        <div className="bg-white rounded-xl sm:rounded-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
-          <div className="p-4 sm:p-6">
+        <div className="bg-white rounded-xl sm:rounded-2xl max-w-4xl w-full max-h-[75vh] sm:max-h-[70vh] overflow-y-auto">
+          <div className="p-2 sm:p-3">
             {/* Header */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-3">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setSelectedCompany(null)}
-                  className="rounded-xl"
+                  className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading font-bold h-8 w-8 sm:h-10 sm:w-10 flex-shrink-0"
                 >
-                  <ArrowLeft className="h-5 w-5" />
+                  <X className="h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
-                <h1 className="text-2xl font-heading text-primary-navy">Company Profile</h1>
+                <h1 className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy truncate">Company Profile</h1>
               </div>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setSelectedCompany(null)}
-                className="rounded-xl"
-              >
-                <X className="h-5 w-5" />
-              </Button>
             </div>
 
             {/* Company Content */}
-            <div className="space-y-6">
+            <div className="space-y-3 sm:space-y-4">
               {/* Basic Info */}
-              <div className="flex items-start space-x-4">
-                <img src={selectedCompany.logo} alt={selectedCompany.name} className="h-20 w-20 rounded-xl" />
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <h2 className="text-2xl font-heading text-primary-navy">{selectedCompany.name}</h2>
-                    {selectedCompany.verified && (
-                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                        <CheckCircle className="h-4 w-4 text-white" />
-                      </div>
-                    )}
-                    <Badge 
-                      className={`${
-                        selectedCompany.companyType === 'Startup' ? 'bg-green-100 text-green-700' :
-                        selectedCompany.companyType === 'Agency' ? 'bg-purple-100 text-purple-700' :
-                        'bg-blue-100 text-blue-700'
-                      } font-subheading`}
-                    >
-                      {selectedCompany.companyType}
-                    </Badge>
+              <div className="flex flex-col sm:flex-row sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
+                <img src={selectedCompany.logo} alt={selectedCompany.name} className="h-16 w-16 sm:h-20 sm:w-20 rounded-xl self-center sm:self-start flex-shrink-0" />
+                <div className="flex-1 text-center sm:text-left">
+                  <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 mb-2">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">{selectedCompany.name}</h2>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      {selectedCompany.verified && (
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                          <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
+                        </div>
+                      )}
+                      <Badge 
+                        className={`${
+                          selectedCompany.companyType === 'Startup' ? 'bg-green-100 text-green-700' :
+                          selectedCompany.companyType === 'Agency' ? 'bg-purple-100 text-purple-700' :
+                          'bg-blue-100 text-blue-700'
+                        } font-subheading text-xs sm:text-sm`}
+                      >
+                        {selectedCompany.companyType}
+                      </Badge>
+                    </div>
                   </div>
-                  <p className="text-lg text-slate-600 font-subheading mb-3">{selectedCompany.industry}</p>
-                  <div className="grid grid-cols-2 gap-4 text-slate-600 font-subheading">
-                    <div className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4 text-slate-500" />
-                      <span>{selectedCompany.location}</span>
+                  <p className="text-base sm:text-lg text-slate-600 font-subheading mb-3">{selectedCompany.industry}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 md:gap-4 text-slate-600 font-subheading text-xs sm:text-sm md:text-base">
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="truncate">{selectedCompany.location}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Users className="h-4 w-4 text-slate-500" />
-                      <span>{selectedCompany.size}</span>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <Users className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="truncate">{selectedCompany.size}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4 text-slate-500" />
-                      <span>Founded {selectedCompany.founded}</span>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="truncate">Founded {selectedCompany.founded}</span>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Building2 className="h-4 w-4 text-slate-500" />
-                      <span>{selectedCompany.jobOpenings.length} open positions</span>
+                    <div className="flex items-center justify-center sm:justify-start space-x-2">
+                      <Building2 className="h-3 w-3 sm:h-4 sm:w-4 text-slate-500 flex-shrink-0" />
+                      <span className="text-xs sm:text-sm truncate">{selectedCompany.jobOpenings.length} open positions</span>
                     </div>
                   </div>
                 </div>
@@ -1205,14 +1209,14 @@ export default function ExplorePage() {
               </div>
 
               {/* Mission & Vision */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <h4 className="font-heading text-primary-navy mb-2">Mission</h4>
-                  <p className="text-slate-600 font-subheading">{selectedCompany.mission}</p>
+                  <p className="text-slate-600 font-subheading text-sm sm:text-base">{selectedCompany.mission}</p>
                 </div>
                 <div>
                   <h4 className="font-heading text-primary-navy mb-2">Vision</h4>
-                  <p className="text-slate-600 font-subheading">{selectedCompany.vision}</p>
+                  <p className="text-slate-600 font-subheading text-sm sm:text-base">{selectedCompany.vision}</p>
                 </div>
               </div>
 
@@ -1264,16 +1268,16 @@ export default function ExplorePage() {
               {/* Contact Info */}
               <div>
                 <h3 className="text-lg font-heading text-primary-navy mb-3">Contact Information</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                  <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 text-xs sm:text-sm">
+                  <div className="text-center sm:text-left">
                     <span className="text-slate-500">Website:</span>
-                    <span className="ml-2 text-slate-700 font-subheading">{selectedCompany.website}</span>
+                    <span className="ml-2 text-slate-700 font-subheading break-all">{selectedCompany.website}</span>
                   </div>
-                  <div>
+                  <div className="text-center sm:text-left">
                     <span className="text-slate-500">Email:</span>
-                    <span className="ml-2 text-slate-700 font-subheading">{selectedCompany.email}</span>
+                    <span className="ml-2 text-slate-700 font-subheading break-all">{selectedCompany.email}</span>
                   </div>
-                  <div>
+                  <div className="text-center sm:text-left">
                     <span className="text-slate-500">Phone:</span>
                     <span className="ml-2 text-slate-700 font-subheading">{selectedCompany.phone}</span>
                   </div>
@@ -1281,17 +1285,18 @@ export default function ExplorePage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex space-x-4 pt-4">
+              <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
                 <Button 
-                  className="flex-1 bg-primary-navy hover:bg-slate-800 text-white rounded-xl font-subheading font-bold"
+                  className="flex-1 bg-primary-navy hover:bg-slate-800 text-white rounded-xl font-subheading font-bold text-sm sm:text-base py-2 sm:py-3"
                   onClick={handleViewJobsClick}
                 >
-                  <Building2 className="h-4 w-4 mr-2" />
-                  View Open Positions ({selectedCompany.jobOpenings.length})
+                  <Building2 className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
+                  <span className="hidden sm:inline">View Open Positions ({selectedCompany.jobOpenings.length})</span>
+                  <span className="sm:hidden">View Jobs ({selectedCompany.jobOpenings.length})</span>
                 </Button>
                 <Button 
                   variant="outline" 
-                  className={`rounded-xl font-subheading font-bold ${
+                  className={`sm:flex-shrink-0 rounded-xl font-subheading font-bold text-sm sm:text-base py-2 sm:py-3 ${
                     isFollowed(selectedCompany.id) 
                       ? 'bg-[#0056B3] text-white border-[#0056B3] hover:bg-primary-navy' 
                       : 'border-[#0056B3] text-[#0056B3] hover:bg-primary-navy hover:text-white'
@@ -1300,12 +1305,12 @@ export default function ExplorePage() {
                 >
                   {isFollowed(selectedCompany.id) ? (
                     <>
-                      <CheckCircle className="h-4 w-4 mr-2" />
+                      <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                       Following
                     </>
                   ) : (
                     <>
-                      <Users className="h-4 w-4 mr-2" />
+                      <Users className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                       Follow
                     </>
                   )}
@@ -1319,14 +1324,14 @@ export default function ExplorePage() {
 
     {/* Jobs Modal */}
     <Dialog open={showJobsModal} onOpenChange={setShowJobsModal}>
-      <DialogContent className="max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto mx-2 sm:mx-auto">
+      <DialogContent className="max-w-4xl max-h-[85vh] sm:max-h-[80vh] overflow-y-auto mx-2 sm:mx-auto">
         <DialogHeader>
-          <DialogTitle className="font-heading text-primary-navy">
+          <DialogTitle className="font-heading text-primary-navy text-lg sm:text-xl">
             Open Positions at {selectedCompany?.name}
           </DialogTitle>
         </DialogHeader>
         
-        <div className="space-y-6 mt-4">
+        <div className="space-y-4 mt-3">
           {/* Company Info Header */}
           {selectedCompany && (
             <Card className="border-slate-200 bg-slate-50">

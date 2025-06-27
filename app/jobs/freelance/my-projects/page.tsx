@@ -562,91 +562,96 @@ export default function MyProjectsPage() {
   }
 
   return (
-    <div className="min-h-full">
-      <div className="w-[65%] mx-auto py-6">
+    <div className="min-h-full pb-20 md:pb-6">
+      <div className="w-full max-w-7xl mx-auto py-4 md:py-6 px-4 md:px-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center space-x-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0 mb-6 md:mb-8">
+          <div className="flex items-center space-x-3 sm:space-x-4">
             <Link href="/jobs/freelance">
-              <Button variant="ghost" size="icon" className="text-slate-400 hover:text-deep-blue hover:bg-slate-50 rounded-full">
-                <ArrowLeft className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="text-slate-400 hover:text-primary-navy hover:bg-slate-50 rounded-full p-2 sm:p-3">
+                <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </Link>
             <div>
-              <h1 className="text-4xl font-heading text-deep-blue">My Projects</h1>
-              <p className="text-xl text-muted font-subheading">Manage your projects and ongoing work</p>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading text-primary-navy">My Projects</h1>
+              <p className="text-sm sm:text-base lg:text-xl text-slate-600 font-subheading">Manage your projects and ongoing work</p>
             </div>
           </div>
           <Link href="/jobs/freelance/post">
-            <Button className="bg-deep-blue hover:bg-slate-800 text-white rounded-lg px-6 font-subheading">
-              Post New Project
+            <Button className="bg-primary-navy hover:bg-slate-800 text-white rounded-lg px-4 sm:px-6 py-2 sm:py-3 font-subheading text-sm sm:text-base w-full sm:w-auto">
+              <span className="hidden sm:inline">Post New Project</span>
+              <span className="sm:hidden">Post Project</span>
             </Button>
           </Link>
         </div>
 
         {/* Tabs for Posted Projects and Ongoing Projects */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8">
-            <TabsTrigger value="posted" className="font-subheading">
-              Posted Projects ({projects.length})
+          <TabsList className="grid w-full grid-cols-2 mb-6 md:mb-8 bg-slate-100 p-1 rounded-xl">
+            <TabsTrigger value="posted" className="font-subheading text-xs sm:text-sm px-2 sm:px-4 rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary-navy">
+              <span className="hidden sm:inline">Posted Projects</span>
+              <span className="sm:hidden">Posted</span>
+              <span className="ml-1">({projects.length})</span>
             </TabsTrigger>
-            <TabsTrigger value="ongoing" className="font-subheading">
-              Ongoing Projects ({ongoingProjects.length})
+            <TabsTrigger value="ongoing" className="font-subheading text-xs sm:text-sm px-2 sm:px-4 rounded-lg data-[state=active]:bg-white data-[state=active]:text-primary-navy">
+              <span className="hidden sm:inline">Ongoing Projects</span>
+              <span className="sm:hidden">Ongoing</span>
+              <span className="ml-1">({ongoingProjects.length})</span>
             </TabsTrigger>
           </TabsList>
 
           {/* Posted Projects Tab */}
           <TabsContent value="posted" className="space-y-6">
             {/* Stats Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 md:mb-8">
               <Card className="border-slate-200 shadow-sm rounded-xl">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-[#0056B3]/10 rounded-xl flex items-center justify-center">
-                      <Eye className="h-6 w-6 text-[#0056B3]" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-[#0056B3]/10 rounded-xl flex items-center justify-center">
+                      <Eye className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-[#0056B3]" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-deep-blue">3</p>
-                      <p className="text-sm font-subheading text-muted">Active Projects</p>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">3</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Active Projects</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
               <Card className="border-slate-200 shadow-sm rounded-xl">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-green-100 rounded-xl flex items-center justify-center">
-                      <Users className="h-6 w-6 text-green-600" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-green-100 rounded-xl flex items-center justify-center">
+                      <Users className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-green-600" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-deep-blue">35</p>
-                      <p className="text-sm font-subheading text-muted">Total Applications</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="border-slate-200 shadow-sm rounded-xl">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                      <MessageCircle className="h-6 w-6 text-blue-600" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-heading text-deep-blue">8</p>
-                      <p className="text-sm font-subheading text-muted">Interviews Scheduled</p>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">35</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Total Applications</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
               <Card className="border-slate-200 shadow-sm rounded-xl">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-amber-100 rounded-xl flex items-center justify-center">
-                      <Star className="h-6 w-6 text-amber-600" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                      <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-blue-600" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-deep-blue">4.8</p>
-                      <p className="text-sm font-subheading text-muted">Average Rating</p>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">8</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Interviews Scheduled</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="border-slate-200 shadow-sm rounded-xl">
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-amber-100 rounded-xl flex items-center justify-center">
+                      <Star className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-amber-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">4.8</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Average Rating</p>
                     </div>
                   </div>
                 </CardContent>
@@ -654,140 +659,144 @@ export default function MyProjectsPage() {
             </div>
 
             {/* Posted Projects List */}
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {projects.map((project) => (
                 <Card key={project.id} className="border-slate-200 shadow-sm rounded-xl hover:shadow-md transition-shadow">
-                  <CardHeader className="border-b border-slate-100">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <CardTitle className="text-xl font-heading text-deep-blue">{project.title}</CardTitle>
-                          <Badge className={`${getStatusColor(project.status)} font-subheading`}>
-                            {project.status}
-                          </Badge>
+                  <CardHeader className="border-b border-slate-100 p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-3 sm:space-y-0">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-col space-y-2 mb-3 sm:mb-2">
+                          <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-3 space-y-2 sm:space-y-0">
+                            <CardTitle className="text-lg sm:text-xl font-heading text-primary-navy flex-1 min-w-0 break-words leading-tight">{project.title}</CardTitle>
+                            <Badge className={`${getStatusColor(project.status)} font-subheading flex-shrink-0 w-fit`}>
+                              {project.status}
+                            </Badge>
+                          </div>
                         </div>
-                        <p className="text-muted font-subheading leading-relaxed mb-4">{project.description}</p>
-                        <div className="flex flex-wrap gap-2 mb-4">
+                        <p className="text-slate-600 font-subheading leading-relaxed mb-3 sm:mb-4 text-xs sm:text-sm break-words">{project.description}</p>
+                        <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4 max-w-full">
                           {project.skills.map((skill) => (
-                            <Badge key={skill} className="bg-slate-100 text-slate-700 font-subheading">
+                            <Badge key={skill} className="bg-slate-100 text-slate-700 font-subheading text-xs sm:text-sm break-words max-w-full">
                               {skill}
                             </Badge>
                           ))}
                         </div>
-                        <div className="flex items-center space-x-6 text-sm text-muted">
-                          <div className="flex items-center">
-                            <DollarSign className="h-4 w-4 mr-1" />
-                            <span className="font-subheading">{project.budget} • {project.type}</span>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 text-xs sm:text-sm text-slate-600">
+                          <div className="flex items-center min-w-0">
+                            <DollarSign className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
+                            <span className="font-subheading truncate">{project.budget} • {project.type}</span>
                           </div>
-                          <div className="flex items-center">
-                            <Calendar className="h-4 w-4 mr-1" />
-                            <span className="font-subheading">Posted {project.posted}</span>
+                          <div className="flex items-center min-w-0">
+                            <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
+                            <span className="font-subheading truncate">Posted {project.posted}</span>
                           </div>
-                          <div className="flex items-center">
-                            <Users className="h-4 w-4 mr-1" />
-                            <span className="font-subheading">{project.applicants} applications</span>
+                          <div className="flex items-center min-w-0">
+                            <Users className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
+                            <span className="font-subheading truncate">{project.applicants} applications</span>
                           </div>
                         </div>
                       </div>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="text-slate-400 hover:text-deep-blue hover:bg-slate-50 rounded-full">
-                            <MoreVertical className="h-5 w-5" />
+                          <Button variant="ghost" size="icon" className="text-slate-400 hover:text-primary-navy hover:bg-slate-50 rounded-full flex-shrink-0 self-start sm:self-center">
+                            <MoreVertical className="h-4 w-4 sm:h-5 sm:w-5" />
                           </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="w-48">
-                          <DropdownMenuItem>
-                            <Edit className="h-4 w-4 mr-2" />
+                        <DropdownMenuContent align="end" className="w-40 sm:w-48">
+                          <DropdownMenuItem className="text-xs sm:text-sm">
+                            <Edit className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                             Edit Project
                           </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <Share2 className="h-4 w-4 mr-2" />
+                          <DropdownMenuItem className="text-xs sm:text-sm">
+                            <Share2 className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                             Share Project
                           </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <Archive className="h-4 w-4 mr-2" />
+                          <DropdownMenuItem className="text-xs sm:text-sm">
+                            <Archive className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                             Archive Project
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </div>
                   </CardHeader>
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-lg font-heading text-deep-blue">Applications ({project.applications.length})</h3>
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0 mb-4">
+                      <h3 className="text-base sm:text-lg font-heading text-primary-navy">Applications ({project.applications.length})</h3>
                       <Button 
                         variant="outline" 
                         size="sm" 
-                        className="border-deep-blue text-deep-blue hover:bg-deep-blue hover:text-white rounded-xl font-subheading"
+                        className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading text-xs sm:text-sm w-fit"
                       >
-                        <Eye className="h-4 w-4 mr-2" />
+                        <Eye className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                         View All
                       </Button>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-3 sm:space-y-4">
                       {project.applications && project.applications.length > 0 ? (
                         project.applications.map((application) => (
-                          <div key={application.id} className="border-t border-slate-200 pt-4 first:border-t-0 first:pt-0">
-                            <div className="flex items-start space-x-4">
-                              <Avatar className="h-12 w-12">
-                                <AvatarFallback className="bg-gradient-to-br from-slate-600 to-slate-800 text-white font-heading">
+                          <div key={application.id} className="border-t border-slate-200 pt-3 sm:pt-4 first:border-t-0 first:pt-0">
+                            <div className="flex flex-col sm:flex-row sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
+                              <Avatar className="h-10 w-10 sm:h-12 sm:w-12 flex-shrink-0">
+                                <AvatarFallback className="bg-gradient-to-br from-slate-600 to-slate-800 text-white font-heading text-sm sm:text-base">
                                   {application.avatar}
                                 </AvatarFallback>
                               </Avatar>
-                              <div className="flex-1">
-                                <div className="flex items-start justify-between">
-                                  <div>
-                                    <h4 className="font-heading text-deep-blue">{application.name}</h4>
-                                    <div className="flex items-center space-x-4 mt-1">
-                                      <div className="flex items-center">
-                                        <Star className="h-4 w-4 fill-amber-400 text-amber-400 mr-1" />
-                                        <span className="font-subheading">{application.rating} ({application.reviews} reviews)</span>
-                                      </div>
-                                      <div className="flex items-center">
-                                        <DollarSign className="h-4 w-4 mr-1" />
-                                        <span className="font-subheading">${application.hourlyRate}/hr</span>
-                                      </div>
-                                      <div className="flex items-center">
-                                        <MapPin className="h-4 w-4 mr-1" />
-                                        <span className="font-subheading">{application.location}</span>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex flex-col space-y-2">
+                                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-2 sm:space-y-0">
+                                    <div className="min-w-0">
+                                      <h4 className="font-heading text-primary-navy text-sm sm:text-base break-words">{application.name}</h4>
+                                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-2 mt-1 text-xs sm:text-sm">
+                                        <div className="flex items-center min-w-0">
+                                          <Star className="h-3 w-3 sm:h-4 sm:w-4 fill-amber-400 text-amber-400 mr-1 flex-shrink-0" />
+                                          <span className="font-subheading truncate text-slate-600">{application.rating} ({application.reviews} reviews)</span>
+                                        </div>
+                                        <div className="flex items-center min-w-0">
+                                          <DollarSign className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
+                                          <span className="font-subheading truncate text-slate-600">${application.hourlyRate}/hr</span>
+                                        </div>
+                                        <div className="flex items-center min-w-0">
+                                          <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
+                                          <span className="font-subheading truncate text-slate-600">{application.location}</span>
+                                        </div>
                                       </div>
                                     </div>
+                                    <Badge 
+                                      variant="outline" 
+                                      className={`font-subheading text-xs sm:text-sm flex-shrink-0 ${
+                                        application.status === "hired" 
+                                          ? "border-green-500 text-green-600" 
+                                          : application.status === "rejected" 
+                                          ? "border-red-500 text-red-600"
+                                          : "border-amber-500 text-amber-600"
+                                      }`}
+                                    >
+                                      {application.status.charAt(0).toUpperCase() + application.status.slice(1)}
+                                    </Badge>
                                   </div>
-                                  <Badge 
-                                    variant="outline" 
-                                    className={`font-subheading ${
-                                      application.status === "hired" 
-                                        ? "border-green-500 text-green-600" 
-                                        : application.status === "rejected" 
-                                        ? "border-red-500 text-red-600"
-                                        : "border-amber-500 text-amber-600"
-                                    }`}
-                                  >
-                                    {application.status.charAt(0).toUpperCase() + application.status.slice(1)}
-                                  </Badge>
                                 </div>
-                                <p className="text-muted font-subheading mt-2">{application.proposal}</p>
-                                <div className="flex items-center justify-between mt-4">
-                                  <p className="text-xs text-muted font-subheading">Applied {application.appliedAt}</p>
-                                  <div className="flex space-x-2">
+                                <p className="text-slate-600 font-subheading mt-2 text-xs sm:text-sm leading-relaxed break-words">{application.proposal}</p>
+                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0 mt-3 sm:mt-4">
+                                  <p className="text-xs text-slate-500 font-subheading">Applied {application.appliedAt}</p>
+                                  <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
                                     <Button 
                                       variant="outline" 
                                       size="sm"
-                                      className="border-deep-blue text-deep-blue hover:bg-deep-blue hover:text-white rounded-xl font-subheading"
+                                                                              className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading text-xs sm:text-sm"
                                       onClick={(e) => {
                                         e.stopPropagation();
                                         setSelectedFreelancer(application);
                                         setShowMessageModal(true);
                                       }}
                                     >
-                                      <Mail className="h-4 w-4 mr-1" />
+                                      <Mail className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
                                       Message
                                     </Button>
                                     {(application.status === "pending" || application.status === "interviewed") && (
                                       <Link href={`/hire-freelancer?project=${project.id}&applicant=${application.id}`}>
                                         <Button 
                                           size="sm"
-                                          className="bg-green-600 hover:bg-green-700 text-white rounded-lg font-subheading"
+                                          className="bg-green-600 hover:bg-green-700 text-white rounded-lg font-subheading text-xs sm:text-sm"
                                         >
                                           Hire Now
                                         </Button>
@@ -795,7 +804,7 @@ export default function MyProjectsPage() {
                                     )}
                                     <Button 
                                       size="sm"
-                                      className="bg-deep-blue hover:bg-slate-800 text-white rounded-lg font-subheading"
+                                                                                className="bg-primary-navy hover:bg-slate-800 text-white rounded-lg font-subheading text-xs sm:text-sm"
                                       onClick={(e) => {
                                         e.stopPropagation();
                                         setSelectedFreelancer(application);
@@ -803,7 +812,7 @@ export default function MyProjectsPage() {
                                       }}
                                     >
                                       View Profile
-                                      <ChevronRight className="h-4 w-4 ml-1" />
+                                      <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 ml-1" />
                                     </Button>
                                   </div>
                                 </div>
@@ -813,14 +822,14 @@ export default function MyProjectsPage() {
                         ))
                       ) : (
                         <div className="text-center py-8">
-                          <p className="text-muted font-subheading">No applications yet</p>
+                          <p className="text-slate-600 font-subheading">No applications yet</p>
                         </div>
                       )}
                       {project.applications.length > 2 && (
                         <div className="text-center pt-2">
                           <Button 
                             variant="outline" 
-                            className="border-deep-blue text-deep-blue hover:bg-deep-blue hover:text-white rounded-xl font-subheading"
+                            className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading"
                           >
                             View {project.applications.length - 2} more applications
                             <ChevronRight className="h-4 w-4 ml-1" />
@@ -841,9 +850,9 @@ export default function MyProjectsPage() {
                     <Eye className="h-8 w-8 text-slate-400" />
                   </div>
                   <h3 className="text-xl font-heading text-slate-700 mb-2">No projects posted yet</h3>
-                  <p className="text-muted font-subheading mb-6">Start by posting your first project to find talented freelancers.</p>
+                  <p className="text-slate-600 font-subheading mb-6">Start by posting your first project to find talented freelancers.</p>
                   <Link href="/jobs/freelance/post">
-                    <Button className="bg-deep-blue hover:bg-slate-800 text-white rounded-lg px-6 font-subheading">
+                    <Button className="bg-primary-navy hover:bg-slate-800 text-white rounded-lg px-6 font-subheading">
                       Post Your First Project
                     </Button>
                   </Link>
@@ -855,61 +864,61 @@ export default function MyProjectsPage() {
           {/* Ongoing Projects Tab */}
           <TabsContent value="ongoing" className="space-y-6">
             {/* Stats Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 md:mb-8">
               <Card className="border-slate-200 shadow-sm rounded-xl">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-[#0056B3]/10 rounded-xl flex items-center justify-center">
-                      <TrendingUp className="h-6 w-6 text-[#0056B3]" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-[#0056B3]/10 rounded-xl flex items-center justify-center">
+                      <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-[#0056B3]" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-deep-blue">{ongoingProjects.length}</p>
-                      <p className="text-sm font-subheading text-muted">Ongoing Projects</p>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">{ongoingProjects.length}</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Ongoing Projects</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
               <Card className="border-slate-200 shadow-sm rounded-xl">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-green-100 rounded-xl flex items-center justify-center">
-                      <DollarSign className="h-6 w-6 text-green-600" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-green-100 rounded-xl flex items-center justify-center">
+                      <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-green-600" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-deep-blue">
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">
                         ${ongoingProjects.reduce((sum, project) => sum + project.paidAmount, 0).toLocaleString()}
                       </p>
-                      <p className="text-sm font-subheading text-muted">Total Paid</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Total Paid</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
               <Card className="border-slate-200 shadow-sm rounded-xl">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                      <Shield className="h-6 w-6 text-blue-600" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                      <Shield className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-blue-600" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-deep-blue">
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">
                         ${ongoingProjects.reduce((sum, project) => sum + project.nextMilestoneAmount, 0).toLocaleString()}
                       </p>
-                      <p className="text-sm font-subheading text-muted">Pending Payments</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Pending Payments</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
               <Card className="border-slate-200 shadow-sm rounded-xl">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-amber-100 rounded-xl flex items-center justify-center">
-                      <Clock className="h-6 w-6 text-amber-600" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-amber-100 rounded-xl flex items-center justify-center">
+                      <Clock className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-amber-600" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-deep-blue">
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">
                         {Math.round(ongoingProjects.reduce((sum, project) => sum + project.progress, 0) / ongoingProjects.length) || 0}%
                       </p>
-                      <p className="text-sm font-subheading text-muted">Avg Progress</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Avg Progress</p>
                     </div>
                   </div>
                 </CardContent>
@@ -924,18 +933,18 @@ export default function MyProjectsPage() {
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center space-x-3 mb-2">
-                          <CardTitle className="text-2xl font-heading text-deep-blue">{project.title}</CardTitle>
+                          <CardTitle className="text-2xl font-heading text-primary-navy">{project.title}</CardTitle>
                           <Badge className={`${getOngoingStatusColor(project.status)} font-subheading`}>
                             {project.status}
                           </Badge>
                         </div>
-                        <p className="text-muted font-subheading leading-relaxed mb-4">{project.description}</p>
+                        <p className="text-slate-600 font-subheading leading-relaxed mb-4">{project.description}</p>
                         
                         {/* Progress Bar */}
                         <div className="mb-4">
                           <div className="flex items-center justify-between mb-2">
-                            <span className="text-sm font-subheading text-muted">Progress</span>
-                            <span className="text-sm font-heading text-deep-blue">{project.progress}%</span>
+                            <span className="text-sm font-subheading text-slate-600">Progress</span>
+                            <span className="text-sm font-heading text-primary-navy">{project.progress}%</span>
                           </div>
                           <Progress value={project.progress} className="h-2" />
                         </div>
@@ -948,7 +957,7 @@ export default function MyProjectsPage() {
                           ))}
                         </div>
                         
-                        <div className="flex items-center space-x-6 text-sm text-muted">
+                        <div className="flex items-center space-x-6 text-sm text-slate-600">
                           <div className="flex items-center">
                             <DollarSign className="h-4 w-4 mr-1" />
                             <span className="font-subheading">${project.totalValue.toLocaleString()} • {project.contractType}</span>
@@ -965,7 +974,7 @@ export default function MyProjectsPage() {
                       </div>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="text-slate-400 hover:text-deep-blue hover:bg-slate-50 rounded-full">
+                          <Button variant="ghost" size="icon" className="text-slate-400 hover:text-primary-navy hover:bg-slate-50 rounded-full">
                             <MoreVertical className="h-5 w-5" />
                           </Button>
                         </DropdownMenuTrigger>
@@ -996,12 +1005,12 @@ export default function MyProjectsPage() {
                       </Avatar>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="text-xl font-heading text-deep-blue">{project.freelancer.name}</h4>
+                          <h4 className="text-xl font-heading text-primary-navy">{project.freelancer.name}</h4>
                           <div className="flex space-x-2">
                             <Button 
                               variant="outline" 
                               size="sm"
-                              className="border-deep-blue text-deep-blue hover:bg-deep-blue hover:text-white rounded-lg font-subheading"
+                              className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-subheading"
                             >
                               <MessageCircle className="h-4 w-4 mr-1" />
                               Message
@@ -1011,7 +1020,7 @@ export default function MyProjectsPage() {
                                 <Button 
                                   size="sm"
                                   variant="outline"
-                                  className="border-deep-blue text-deep-blue hover:bg-deep-blue hover:text-white rounded-xl font-subheading"
+                                  className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading"
                                   onClick={(e) => handleMessageClick(e, project.freelancer)}
                                 >
                                   <Send className="h-4 w-4 mr-1" />

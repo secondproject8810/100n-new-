@@ -315,21 +315,21 @@ export default function FreelancePage() {
 
   return (
     <div className="min-h-full">
-      <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-2 sm:py-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 sm:mb-8 space-y-4 sm:space-y-0">
-        <div>
+      <div className="w-full max-w-7xl mx-auto px-0 sm:px-3 md:px-4 lg:px-6 py-2 sm:py-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 sm:mb-8 space-y-4 sm:space-y-0 px-3 sm:px-0">
+          <div>
             <h1 className="text-2xl sm:text-4xl font-heading text-primary-navy mb-1 sm:mb-2">Freelance Marketplace</h1>
             <p className="text-slate-600 font-subheading text-base sm:text-xl">Find work or hire talented professionals</p>
-        </div>
-        {activeTab === "freelancers" && (
-        <Link href="/jobs/freelance/post">
+          </div>
+          {activeTab === "freelancers" && (
+            <Link href="/jobs/freelance/post">
               <Button className="bg-primary-navy hover:bg-slate-800 text-white rounded-full px-4 sm:px-6 py-2 sm:py-3 font-subheading text-sm sm:text-base">
-            <PlusCircle className="h-4 w-4 mr-2" />
-            Post a Project
-          </Button>
-        </Link>
-        )}
-      </div>
+                <PlusCircle className="h-4 w-4 mr-2" />
+                Post a Project
+              </Button>
+            </Link>
+          )}
+        </div>
 
         <Tabs value={activeTab} className="mb-6 sm:mb-8" onValueChange={setActiveTab}>
           <TabsList className="grid w-full grid-cols-2 mb-6 sm:mb-8 bg-slate-100 p-1 sm:p-2 rounded-xl sm:rounded-2xl">
@@ -653,7 +653,7 @@ export default function FreelancePage() {
 
               {/* Main Content Area */}
               <div className="flex-1">
-                <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-8">
+                <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-8 px-3 sm:px-0">
             <div className="relative flex-1">
                     <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-slate-400" />
                     <Input 
@@ -675,16 +675,16 @@ export default function FreelancePage() {
             </Select>
           </div>
 
-                <div className="space-y-3 sm:space-y-4">
+                <div className="space-y-0 sm:space-y-3 md:space-y-4">
             {projects.map((project) => {
               const IconComponent = project.icon
               return (
                 <Card 
                   key={project.id}
-                        className="border-0 shadow-sm hover:shadow-md transition-all duration-200 rounded-xl sm:rounded-2xl bg-white cursor-pointer overflow-hidden"
+                        className="sm:border-0 sm:shadow-sm sm:hover:shadow-md transition-all duration-200 sm:rounded-xl md:rounded-2xl sm:bg-white cursor-pointer overflow-hidden"
                   onClick={() => handleProjectClick(project)}
                 >
-                        <CardContent className="p-4 sm:p-6 lg:p-8 overflow-hidden">
+                        <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8 overflow-hidden">
                           <div className="flex items-start w-full">
                             <div className="flex-1 min-w-0 w-full">
                               <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 mb-3 sm:mb-4">
@@ -1001,7 +1001,7 @@ export default function FreelancePage() {
 
               {/* Main Content Area */}
               <div className="flex-1">
-                <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-8">
+                <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 mb-6 sm:mb-8 px-3 sm:px-0">
             <div className="relative flex-1">
                     <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-slate-400" />
                     <Input 
@@ -1023,14 +1023,14 @@ export default function FreelancePage() {
             </Select>
           </div>
 
-                <div className="space-y-3 sm:space-y-4">
+                <div className="space-y-0 sm:space-y-3 md:space-y-4">
             {freelancers.map((freelancer) => (
               <Card 
                 key={freelancer.id}
-                      className="border-0 shadow-sm hover:shadow-md transition-all duration-200 rounded-xl sm:rounded-2xl bg-white cursor-pointer overflow-hidden"
+                      className="sm:border-0 sm:shadow-sm sm:hover:shadow-md transition-all duration-200 sm:rounded-xl md:rounded-2xl sm:bg-white cursor-pointer overflow-hidden"
                 onClick={() => handleFreelancerClick(freelancer)}
               >
-                      <CardContent className="p-4 sm:p-6 lg:p-8 overflow-hidden">
+                      <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8 overflow-hidden">
                         <div className="flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 lg:space-x-6 w-full">
                           <div className="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary-navy to-slate-700 flex items-center justify-center text-white text-xl sm:text-2xl lg:text-3xl font-heading flex-shrink-0 mx-auto sm:mx-0">
                       {freelancer.initials}

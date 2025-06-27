@@ -306,8 +306,36 @@ export default function InternshipsPage() {
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Enhanced Sidebar for Internships */}
         <div className="w-full lg:w-64 lg:flex-shrink-0">
-          {/* My Applications - Always Visible */}
-          <div className="mb-6">
+          {/* Mobile Horizontal Buttons - Only on Mobile */}
+          <div className="lg:hidden mb-6">
+            <div className="flex gap-2">
+              {/* Applied Internships Button - Mobile */}
+              <Link href="/internships/applied" className="flex-1">
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="w-full border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-subheading text-xs h-8"
+                >
+                  <CheckCircle className="h-3 w-3 mr-1" />
+                  Applied ({statusCounts.total})
+                </Button>
+              </Link>
+              
+              {/* Filters Button - Mobile */}
+              <Button 
+                onClick={() => setShowFilters(!showFilters)}
+                variant="outline"
+                size="sm"
+                className="flex-1 border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-subheading text-xs h-8"
+              >
+                <Filter className="h-3 w-3 mr-1" />
+                Filters
+              </Button>
+            </div>
+          </div>
+
+          {/* My Applications - Desktop Only */}
+          <div className="mb-6 hidden lg:block">
             <Card className="border-slate-200 shadow-sm">
               <CardHeader className="pb-4">
                 <CardTitle className="text-lg lg:text-xl font-heading text-primary-navy flex items-center">
@@ -342,8 +370,8 @@ export default function InternshipsPage() {
             </Card>
           </div>
 
-          {/* Mobile Filter Toggle */}
-          <div className="lg:hidden mb-4">
+          {/* Mobile Filter Toggle - Hidden (now replaced by horizontal button) */}
+          <div className="hidden">
             <Button 
               onClick={() => setShowFilters(!showFilters)}
               className="w-full bg-primary-navy hover:bg-primary-navy/90 text-white rounded-lg font-subheading flex items-center justify-center"
@@ -354,7 +382,7 @@ export default function InternshipsPage() {
           </div>
           
           {/* Advanced Filters */}
-          <div className={`${showFilters ? 'block' : 'hidden'} lg:block`}>
+          <div className={`${showFilters ? 'block' : 'hidden lg:block'}`}>
             <Card className="border-slate-200 shadow-sm">
               <CardHeader className="pb-4">
                 <CardTitle className="text-lg lg:text-xl font-heading text-primary-navy flex items-center justify-between">

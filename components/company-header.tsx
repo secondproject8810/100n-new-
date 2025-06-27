@@ -66,7 +66,7 @@ export default function CompanyHeader() {
         {/* Logo */}
         <div className="flex items-center">
           <Link href="/company-dashboard" className="flex items-center">
-            <span className="font-logo text-xl md:text-2xl font-bold">
+            <span className="font-logo text-xl md:text-2xl font-bold" style={{fontFamily: 'Montserrat, sans-serif', fontWeight: 900, fontStyle: 'italic'}}>
               100<span className="text-[#0056B3]">Networks</span>
             </span>
           </Link>

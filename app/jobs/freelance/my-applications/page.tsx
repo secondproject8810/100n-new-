@@ -711,23 +711,23 @@ export default function MyApplicationsPage() {
   }
 
   return (
-    <div className="min-h-full">
-      <div className="w-[65%] mx-auto py-6">
+    <div className="min-h-full pb-20 md:pb-6">
+      <div className="w-full max-w-7xl mx-auto py-4 md:py-6 px-4 md:px-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center space-x-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0 mb-6 md:mb-8">
+          <div className="flex items-center space-x-3 sm:space-x-4">
             <Link href="/jobs">
-              <Button variant="ghost" size="icon" className="text-slate-400 hover:text-primary-navy hover:bg-slate-50 rounded-full">
-                <ArrowLeft className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="text-slate-400 hover:text-primary-navy hover:bg-slate-50 rounded-full p-2 sm:p-3">
+                <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </Link>
             <div>
-              <h1 className="text-3xl font-heading text-primary-navy">My Work</h1>
-              <p className="text-slate-600 font-subheading">Track your applications and manage ongoing projects</p>
+              <h1 className="text-2xl sm:text-3xl font-heading text-primary-navy">My Work</h1>
+              <p className="text-slate-600 font-subheading text-sm sm:text-base">Track your applications and manage ongoing projects</p>
             </div>
           </div>
           <Link href="/jobs/freelance">
-            <Button className="bg-primary-navy hover:bg-slate-800 text-white rounded-lg px-6 font-subheading">
+            <Button className="bg-primary-navy hover:bg-slate-800 text-white rounded-lg px-4 sm:px-6 py-2 sm:py-3 font-subheading text-sm sm:text-base w-full sm:w-auto">
               Browse Projects
             </Button>
           </Link>
@@ -735,73 +735,77 @@ export default function MyApplicationsPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 bg-slate-100 p-1 rounded-xl mb-8">
+          <TabsList className="grid w-full grid-cols-2 bg-slate-100 p-1 rounded-xl mb-6 md:mb-8">
             <TabsTrigger 
               value="applications" 
-              className="rounded-lg font-subheading data-[state=active]:bg-white data-[state=active]:text-primary-navy"
+              className="rounded-lg font-subheading data-[state=active]:bg-white data-[state=active]:text-primary-navy text-xs sm:text-sm px-2 sm:px-4"
             >
-              My Applications ({statusCounts.total})
+              <span className="hidden sm:inline">My Applications</span>
+              <span className="sm:hidden">Applications</span>
+              <span className="ml-1">({statusCounts.total})</span>
             </TabsTrigger>
             <TabsTrigger 
               value="ongoing" 
-              className="rounded-lg font-subheading data-[state=active]:bg-white data-[state=active]:text-primary-navy"
+              className="rounded-lg font-subheading data-[state=active]:bg-white data-[state=active]:text-primary-navy text-xs sm:text-sm px-2 sm:px-4"
             >
-              Ongoing Projects ({ongoingStats.activeProjects})
+              <span className="hidden sm:inline">Ongoing Projects</span>
+              <span className="sm:hidden">Ongoing</span>
+              <span className="ml-1">({ongoingStats.activeProjects})</span>
             </TabsTrigger>
           </TabsList>
 
           {/* Applications Tab */}
           <TabsContent value="applications">
             {/* Stats Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 md:mb-8">
               <Card className="border-slate-200 shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-[#0056B3]/10 rounded-xl flex items-center justify-center">
-                      <FileText className="h-6 w-6 text-[#0056B3]" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-[#0056B3]/10 rounded-xl flex items-center justify-center">
+                      <FileText className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-[#0056B3]" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-primary-navy">{statusCounts.total}</p>
-                      <p className="text-sm font-subheading text-slate-600">Total Applications</p>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">{statusCounts.total}</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Total Applications</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
               <Card className="border-slate-200 shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-yellow-100 rounded-xl flex items-center justify-center">
-                      <Clock className="h-6 w-6 text-yellow-600" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-yellow-100 rounded-xl flex items-center justify-center">
+                      <Clock className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-yellow-600" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-primary-navy">{statusCounts.pending}</p>
-                      <p className="text-sm font-subheading text-slate-600">Pending Review</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="border-slate-200 shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                      <MessageCircle className="h-6 w-6 text-blue-600" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-heading text-primary-navy">{statusCounts.interviewed}</p>
-                      <p className="text-sm font-subheading text-slate-600">Interviews</p>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">{statusCounts.pending}</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Pending Review</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
               <Card className="border-slate-200 shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-green-100 rounded-xl flex items-center justify-center">
-                      <CheckCircle className="h-6 w-6 text-green-600" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                      <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-blue-600" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-primary-navy">{statusCounts.hired}</p>
-                      <p className="text-sm font-subheading text-slate-600">Projects Won</p>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">{statusCounts.interviewed}</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Interviews</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="border-slate-200 shadow-sm">
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-green-100 rounded-xl flex items-center justify-center">
+                      <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-green-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">{statusCounts.hired}</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Projects Won</p>
                     </div>
                   </div>
                 </CardContent>
@@ -809,32 +813,34 @@ export default function MyApplicationsPage() {
             </div>
 
         {/* Applications List */}
-        <div className="space-y-6">
+        <div className="space-y-4 md:space-y-6">
           {applications.map((application) => (
             <Card 
               key={application.id} 
               className="border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
               onClick={() => handleProjectClick(application)}
             >
-              <CardHeader className="border-b border-slate-100">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <CardTitle className="text-xl font-heading text-primary-navy">{application.projectTitle}</CardTitle>
-                      <Badge className={`${getStatusColor(application.status)} font-subheading flex items-center space-x-1`}>
+              <CardHeader className="border-b border-slate-100 p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between space-y-3 sm:space-y-0">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col space-y-2 mb-3 sm:mb-2">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-3 space-y-2 sm:space-y-0">
+                        <CardTitle className="text-lg sm:text-xl font-heading text-primary-navy flex-1 min-w-0 break-words leading-tight">{application.projectTitle}</CardTitle>
+                        <Badge className={`${getStatusColor(application.status)} font-subheading flex items-center space-x-1 w-fit flex-shrink-0`}>
                         {getStatusIcon(application.status)}
-                        <span>{getStatusText(application.status)}</span>
+                          <span className="text-xs">{getStatusText(application.status)}</span>
                       </Badge>
                     </div>
-                    <div className="flex items-center space-x-4 mb-4">
+                    </div>
+                    <div className="flex items-center space-x-3 sm:space-x-4 mb-3 sm:mb-4">
                       <div className="flex items-center space-x-2">
-                        <Avatar className="h-8 w-8">
-                          <AvatarFallback className="bg-gradient-to-br from-slate-600 to-slate-800 text-white font-heading text-sm">
+                        <Avatar className="h-6 w-6 sm:h-8 sm:w-8">
+                          <AvatarFallback className="bg-gradient-to-br from-slate-600 to-slate-800 text-white font-heading text-xs sm:text-sm">
                             {application.clientAvatar}
                           </AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="font-subheading font-medium text-primary-navy">{application.clientName}</p>
+                          <p className="font-subheading font-medium text-primary-navy text-sm sm:text-base">{application.clientName}</p>
                           <div className="flex items-center space-x-1">
                             <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
                             <span className="text-xs font-subheading text-slate-500">{application.clientRating}</span>
@@ -842,29 +848,29 @@ export default function MyApplicationsPage() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4 max-w-full">
                       {application.skills.map((skill) => (
-                        <Badge key={skill} className="bg-slate-100 text-slate-700 font-subheading">
+                        <Badge key={skill} className="bg-slate-100 text-slate-700 font-subheading text-xs break-words max-w-full">
                           {skill}
                         </Badge>
                       ))}
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-slate-500">
-                      <div className="flex items-center">
-                        <DollarSign className="h-4 w-4 mr-1" />
-                        <span className="font-subheading">{application.budget} • {application.budgetType}</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 text-xs sm:text-sm text-slate-500">
+                      <div className="flex items-center min-w-0">
+                        <DollarSign className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
+                        <span className="font-subheading truncate min-w-0">{application.budget} • {application.budgetType}</span>
                       </div>
-                      <div className="flex items-center">
-                        <Calendar className="h-4 w-4 mr-1" />
-                        <span className="font-subheading">Applied {application.appliedDate}</span>
+                      <div className="flex items-center min-w-0">
+                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
+                        <span className="font-subheading truncate">Applied {application.appliedDate}</span>
                       </div>
-                      <div className="flex items-center">
-                        <Users className="h-4 w-4 mr-1" />
-                        <span className="font-subheading">{application.totalApplicants} total applicants</span>
+                      <div className="flex items-center min-w-0">
+                        <Users className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
+                        <span className="font-subheading truncate">{application.totalApplicants} total applicants</span>
                       </div>
-                      <div className="flex items-center">
-                        <MapPin className="h-4 w-4 mr-1" />
-                        <span className="font-subheading">{application.clientLocation}</span>
+                      <div className="flex items-center min-w-0">
+                        <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-1 flex-shrink-0" />
+                        <span className="font-subheading truncate">{application.clientLocation}</span>
                       </div>
                     </div>
                   </div>
@@ -873,47 +879,47 @@ export default function MyApplicationsPage() {
                       <Button 
                         variant="ghost" 
                         size="icon" 
-                        className="text-slate-400 hover:text-primary-navy hover:bg-slate-50 rounded-full"
+                        className="text-slate-400 hover:text-primary-navy hover:bg-slate-50 rounded-full p-1 sm:p-2 self-start sm:self-center"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <MoreVertical className="h-5 w-5" />
+                        <MoreVertical className="h-4 w-4 sm:h-5 sm:w-5" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-48">
-                      <DropdownMenuItem onClick={() => handleViewJobDetails(application)}>
-                        <Eye className="h-4 w-4 mr-2" />
+                    <DropdownMenuContent align="end" className="w-40 sm:w-48">
+                      <DropdownMenuItem onClick={() => handleViewJobDetails(application)} className="text-xs sm:text-sm">
+                        <Eye className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                         View Job
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => handleMessageClient(application)}>
-                        <Mail className="h-4 w-4 mr-2" />
+                      <DropdownMenuItem onClick={() => handleMessageClient(application)} className="text-xs sm:text-sm">
+                        <Mail className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                         Message Client
                       </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <ExternalLink className="h-4 w-4 mr-2" />
+                      <DropdownMenuItem className="text-xs sm:text-sm">
+                        <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
                         Edit Proposal
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-4">
+              <CardContent className="p-4 sm:p-6">
+                <div className="space-y-3 sm:space-y-4">
                   {/* Proposal Preview */}
                   <div>
-                    <h4 className="font-subheading font-medium text-primary-navy mb-2">Your Proposal</h4>
-                    <p className="text-slate-600 font-subheading text-sm leading-relaxed">
-                      {application.proposal.substring(0, 200)}...
+                    <h4 className="font-subheading font-medium text-primary-navy mb-2 text-sm sm:text-base">Your Proposal</h4>
+                    <p className="text-slate-600 font-subheading text-xs sm:text-sm leading-relaxed">
+                      {application.proposal.substring(0, 150)}...
                     </p>
                   </div>
 
                   {/* Status-specific Information */}
                   {application.status === "interviewed" && application.interviewDate && (
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
                       <div className="flex items-center space-x-2 mb-2">
-                        <MessageCircle className="h-5 w-5 text-blue-600" />
-                        <h4 className="font-subheading font-medium text-blue-900">Interview Scheduled</h4>
+                        <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+                        <h4 className="font-subheading font-medium text-blue-900 text-sm sm:text-base">Interview Scheduled</h4>
                       </div>
-                      <p className="text-blue-800 font-subheading text-sm">{application.interviewDate}</p>
+                      <p className="text-blue-800 font-subheading text-xs sm:text-sm">{application.interviewDate}</p>
                     </div>
                   )}
 
@@ -1140,55 +1146,55 @@ export default function MyApplicationsPage() {
           {/* Ongoing Projects Tab */}
           <TabsContent value="ongoing">
             {/* Stats Overview for Ongoing Projects */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 md:mb-8">
               <Card className="border-slate-200 shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                      <Briefcase className="h-6 w-6 text-blue-600" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                      <Briefcase className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-blue-600" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-primary-navy">{ongoingStats.activeProjects}</p>
-                      <p className="text-sm font-subheading text-slate-600">Active Projects</p>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">{ongoingStats.activeProjects}</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Active Projects</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
               <Card className="border-slate-200 shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-green-100 rounded-xl flex items-center justify-center">
-                      <CreditCard className="h-6 w-6 text-green-600" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-green-100 rounded-xl flex items-center justify-center">
+                      <CreditCard className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-green-600" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-primary-navy">${ongoingStats.totalEarned.toLocaleString()}</p>
-                      <p className="text-sm font-subheading text-slate-600">Total Earned</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="border-slate-200 shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-yellow-100 rounded-xl flex items-center justify-center">
-                      <Shield className="h-6 w-6 text-yellow-600" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-heading text-primary-navy">${ongoingStats.pendingPayments.toLocaleString()}</p>
-                      <p className="text-sm font-subheading text-slate-600">Pending Payments</p>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">${ongoingStats.totalEarned.toLocaleString()}</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Total Earned</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
               <Card className="border-slate-200 shadow-sm">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="h-12 w-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                      <TrendingUp className="h-6 w-6 text-purple-600" />
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-yellow-100 rounded-xl flex items-center justify-center">
+                      <Shield className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-yellow-600" />
                     </div>
-                    <div>
-                      <p className="text-2xl font-heading text-primary-navy">{ongoingStats.avgProgress}%</p>
-                      <p className="text-sm font-subheading text-slate-600">Avg Progress</p>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">${ongoingStats.pendingPayments.toLocaleString()}</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Pending Payments</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="border-slate-200 shadow-sm">
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                      <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-purple-600" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-lg sm:text-xl md:text-2xl font-heading text-primary-navy">{ongoingStats.avgProgress}%</p>
+                      <p className="text-xs sm:text-sm font-subheading text-slate-600">Avg Progress</p>
                     </div>
                   </div>
                 </CardContent>

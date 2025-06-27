@@ -313,64 +313,64 @@ export default function InboxPage() {
   if (selectedMessage) {
     return (
       <div className="min-h-full">
-        <div className="w-[65%] mx-auto py-4">
+          <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 md:px-6 py-2 sm:py-4">
           {/* Conversation Header */}
-          <div className="flex items-center justify-between mb-6 p-4 bg-white rounded-2xl shadow-sm">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center justify-between mb-4 sm:mb-6 p-3 sm:p-4 bg-white rounded-xl sm:rounded-2xl shadow-sm">
+              <div className="flex items-center space-x-2 sm:space-x-4">
               <Button 
                 variant="ghost" 
                 size="icon" 
                 onClick={handleBackToList}
-                className="rounded-xl"
+                  className="rounded-xl h-8 w-8 sm:h-10 sm:w-10"
               >
-                <ArrowLeft className="h-5 w-5" />
+                  <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
               <div className="relative">
-                <Avatar className="h-12 w-12">
+                  <Avatar className="h-10 w-10 sm:h-12 sm:w-12">
                   <AvatarImage src={selectedMessage.avatar || undefined} alt={selectedMessage.name} />
-                  <AvatarFallback className="bg-[#0056B3]/10 text-[#0056B3] font-medium">
+                    <AvatarFallback className="bg-[#0056B3]/10 text-[#0056B3] font-medium text-sm sm:text-base">
                     {selectedMessage.initials}
                   </AvatarFallback>
           </Avatar>
                 {selectedMessage.isOnline && (
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+                    <div className="absolute -bottom-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-green-500 rounded-full border-2 border-white"></div>
                 )}
               </div>
-              <div>
-                <h1 className="text-xl font-heading text-primary-navy">{selectedMessage.name}</h1>
-                <p className="text-sm font-subheading text-slate-600">
+                <div className="min-w-0 flex-1">
+                  <h1 className="text-base sm:text-xl font-heading text-primary-navy truncate">{selectedMessage.name}</h1>
+                  <p className="text-xs sm:text-sm font-subheading text-slate-600 truncate">
                   {selectedMessage.isOnline ? "Active now" : `Last seen ${selectedMessage.date}`}
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="icon" className="rounded-xl">
-                <Phone className="h-5 w-5" />
+              <div className="flex items-center space-x-1 sm:space-x-2">
+                <Button variant="ghost" size="icon" className="rounded-xl h-8 w-8 sm:h-10 sm:w-10 hidden sm:flex">
+                  <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-xl">
-                <Video className="h-5 w-5" />
+                <Button variant="ghost" size="icon" className="rounded-xl h-8 w-8 sm:h-10 sm:w-10 hidden sm:flex">
+                  <Video className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="rounded-xl">
-                <Info className="h-5 w-5" />
+                <Button variant="ghost" size="icon" className="rounded-xl h-8 w-8 sm:h-10 sm:w-10">
+                  <Info className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </div>
           </div>
 
           {/* Conversation Messages */}
-          <Card className="border-0 shadow-sm rounded-2xl bg-white mb-4">
-            <CardContent className="p-6">
-              <div className="space-y-6 max-h-[500px] overflow-y-auto">
+            <Card className="border-0 shadow-sm rounded-xl sm:rounded-2xl bg-white mb-3 sm:mb-4">
+              <CardContent className="p-3 sm:p-6">
+                <div className="space-y-4 sm:space-y-6 max-h-[50vh] overflow-y-auto">
                 {selectedMessage.conversation.map((msg) => (
                   <div key={msg.id} className={`flex ${msg.isMe ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`flex items-start space-x-3 max-w-[70%] ${msg.isMe ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                      <Avatar className="h-8 w-8">
-                        <AvatarFallback className={`${msg.isMe ? 'bg-primary-navy text-white' : 'bg-slate-100 text-slate-600'} font-medium text-sm`}>
+                    <div className={`flex items-start space-x-2 sm:space-x-3 max-w-[85%] sm:max-w-[70%] ${msg.isMe ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                      <Avatar className="h-6 w-6 sm:h-8 sm:w-8 flex-shrink-0">
+                        <AvatarFallback className={`${msg.isMe ? 'bg-primary-navy text-white' : 'bg-slate-100 text-slate-600'} font-medium text-xs sm:text-sm`}>
                           {msg.senderInitials}
                         </AvatarFallback>
                       </Avatar>
-                      <div className={`rounded-2xl p-4 ${msg.isMe ? 'bg-slate-50 text-slate-700 border border-slate-200' : 'bg-slate-100 text-slate-700'}`}>
-                        <p className="font-subheading text-sm leading-relaxed">{msg.message}</p>
-                        <span className={`text-xs mt-2 block ${msg.isMe ? 'text-slate-500' : 'text-slate-500'}`}>
+                      <div className={`rounded-xl sm:rounded-2xl p-3 sm:p-4 ${msg.isMe ? 'bg-slate-50 text-slate-700 border border-slate-200' : 'bg-slate-100 text-slate-700'}`}>
+                        <p className="font-subheading text-xs sm:text-sm leading-relaxed">{msg.message}</p>
+                        <span className={`text-xs mt-1 sm:mt-2 block ${msg.isMe ? 'text-slate-500' : 'text-slate-500'}`}>
                           {msg.timestamp}
                         </span>
                       </div>
@@ -381,13 +381,13 @@ export default function InboxPage() {
                 {/* Typing Indicator */}
                 {isTyping && (
                   <div className="flex justify-start">
-                    <div className="flex items-start space-x-3 max-w-[70%]">
-                      <Avatar className="h-8 w-8">
-                        <AvatarFallback className="bg-slate-100 text-slate-600 font-medium text-sm">
+                    <div className="flex items-start space-x-2 sm:space-x-3 max-w-[85%] sm:max-w-[70%]">
+                      <Avatar className="h-6 w-6 sm:h-8 sm:w-8">
+                        <AvatarFallback className="bg-slate-100 text-slate-600 font-medium text-xs sm:text-sm">
                           {selectedMessage.initials}
                         </AvatarFallback>
           </Avatar>
-                      <div className="rounded-2xl p-4 bg-slate-100">
+                      <div className="rounded-xl sm:rounded-2xl p-3 sm:p-4 bg-slate-100">
                         <TypingIndicator />
             </div>
           </div>
@@ -398,19 +398,24 @@ export default function InboxPage() {
           </Card>
 
           {/* Message Input */}
-          <Card className="border-0 shadow-sm rounded-2xl bg-white">
-            <CardContent className="p-4">
-              <div className="flex items-center space-x-3">
+          <Card className="border-0 shadow-sm rounded-xl sm:rounded-2xl bg-white">
+            <CardContent className="p-3 sm:p-4">
+              <div className="flex items-center space-x-2 sm:space-x-3">
                 <Input 
                   placeholder="Type a message..."
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  className="flex-1 border-slate-200 focus:border-primary-navy/30 focus:ring-primary-navy/10 rounded-xl font-subheading"
+                  className="flex-1 border-slate-200 focus:border-primary-navy/30 focus:ring-primary-navy/10 rounded-xl font-subheading py-2 sm:py-3"
+                  style={{ fontSize: '16px' }}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck="false"
                 />
                 <Button 
                   onClick={handleSendMessage}
-                  className="bg-primary-navy hover:bg-primary-navy/90 text-white rounded-xl"
+                  className="bg-primary-navy hover:bg-primary-navy/90 text-white rounded-xl h-10 w-10 sm:h-12 sm:w-12"
                   size="icon"
                 >
                   <Send className="h-4 w-4" />
@@ -422,46 +427,46 @@ export default function InboxPage() {
 
       {/* Archive Modal */}
       <Dialog open={showArchiveModal} onOpenChange={setShowArchiveModal}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogContent className="max-w-[95%] sm:max-w-4xl max-h-[85vh] sm:max-h-[80vh] overflow-y-auto mx-3 sm:mx-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-heading text-primary-navy flex items-center">
-              <Archive className="h-6 w-6 mr-2" />
+              <DialogTitle className="text-lg sm:text-2xl font-heading text-primary-navy flex items-center">
+                <Archive className="h-5 w-5 sm:h-6 sm:w-6 mr-2" />
               Archived Messages ({archivedMessages.length})
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-3 mt-4">
             {archivedMessages.length === 0 ? (
-              <div className="text-center py-8">
-                <Archive className="h-12 w-12 mx-auto text-slate-300 mb-4" />
-                <h3 className="text-lg font-heading text-slate-600 mb-2">No archived messages</h3>
-                <p className="text-slate-500 font-subheading">Messages you archive will appear here.</p>
+                <div className="text-center py-6 sm:py-8">
+                  <Archive className="h-10 w-10 sm:h-12 sm:w-12 mx-auto text-slate-300 mb-3 sm:mb-4" />
+                  <h3 className="text-base sm:text-lg font-heading text-slate-600 mb-2">No archived messages</h3>
+                  <p className="text-sm sm:text-base text-slate-500 font-subheading">Messages you archive will appear here.</p>
               </div>
             ) : (
               archivedMessages.map((message) => (
                 <Card 
                   key={message.id}
-                  className="border-0 shadow-sm hover:shadow-md transition-all duration-200 rounded-2xl bg-white cursor-pointer"
+                    className="border-0 shadow-sm hover:shadow-md transition-all duration-200 rounded-xl sm:rounded-2xl bg-white cursor-pointer"
                   onClick={() => {
                     setShowArchiveModal(false)
                     handleMessageClick(message)
                   }}
                 >
-                  <CardContent className="p-4">
-                    <div className="flex items-center space-x-4">
-                      <Avatar className="w-12 h-12">
+                    <CardContent className="p-3 sm:p-4">
+                      <div className="flex items-center space-x-3 sm:space-x-4">
+                        <Avatar className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
                         <AvatarImage src={message.avatar || undefined} alt={message.name} />
-                        <AvatarFallback className="bg-slate-100 text-slate-600 font-medium">
+                          <AvatarFallback className="bg-slate-100 text-slate-600 font-medium text-sm">
                           {message.initials}
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between mb-1">
-                          <h3 className="font-heading text-primary-navy truncate">
+                            <h3 className="font-heading text-sm sm:text-base text-primary-navy truncate">
                             {message.name}
                           </h3>
-                          <span className="text-sm text-slate-500 font-subheading">{message.date}</span>
+                            <span className="text-xs sm:text-sm text-slate-500 font-subheading whitespace-nowrap ml-2">{message.date}</span>
                         </div>
-                        <p className="text-slate-600 font-subheading text-sm line-clamp-2">
+                          <p className="text-slate-600 font-subheading text-xs sm:text-sm line-clamp-2">
                           {message.preview}
                         </p>
                         <div className="flex items-center justify-between mt-2">
@@ -480,7 +485,7 @@ export default function InboxPage() {
                             >
                               Unarchive
                             </Button>
-                            <span className="text-xs text-slate-500">Archived</span>
+                              <span className="text-xs text-slate-500 hidden sm:inline">Archived</span>
                           </div>
                         </div>
                       </div>
@@ -495,46 +500,46 @@ export default function InboxPage() {
 
       {/* Starred Modal */}
       <Dialog open={showStarredModal} onOpenChange={setShowStarredModal}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogContent className="max-w-[95%] sm:max-w-4xl max-h-[85vh] sm:max-h-[80vh] overflow-y-auto mx-3 sm:mx-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-heading text-primary-navy flex items-center">
-              <Star className="h-6 w-6 mr-2" />
+              <DialogTitle className="text-lg sm:text-2xl font-heading text-primary-navy flex items-center">
+                <Star className="h-5 w-5 sm:h-6 sm:w-6 mr-2" />
               Starred Messages ({starredMessages.length})
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-3 mt-4">
             {starredMessages.length === 0 ? (
-              <div className="text-center py-8">
-                <Star className="h-12 w-12 mx-auto text-slate-300 mb-4" />
-                <h3 className="text-lg font-heading text-slate-600 mb-2">No starred messages</h3>
-                <p className="text-slate-500 font-subheading">Messages you star will appear here.</p>
+                <div className="text-center py-6 sm:py-8">
+                  <Star className="h-10 w-10 sm:h-12 sm:w-12 mx-auto text-slate-300 mb-3 sm:mb-4" />
+                  <h3 className="text-base sm:text-lg font-heading text-slate-600 mb-2">No starred messages</h3>
+                  <p className="text-sm sm:text-base text-slate-500 font-subheading">Messages you star will appear here.</p>
               </div>
             ) : (
               starredMessages.map((message) => (
                 <Card 
                   key={message.id}
-                  className="border-0 shadow-sm hover:shadow-md transition-all duration-200 rounded-2xl bg-white cursor-pointer"
+                    className="border-0 shadow-sm hover:shadow-md transition-all duration-200 rounded-xl sm:rounded-2xl bg-white cursor-pointer"
                   onClick={() => {
                     setShowStarredModal(false)
                     handleMessageClick(message)
                   }}
                 >
-                  <CardContent className="p-4">
-                    <div className="flex items-center space-x-4">
-                      <Avatar className="w-12 h-12">
+                    <CardContent className="p-3 sm:p-4">
+                      <div className="flex items-center space-x-3 sm:space-x-4">
+                        <Avatar className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
                         <AvatarImage src={message.avatar || undefined} alt={message.name} />
-                        <AvatarFallback className="bg-slate-100 text-slate-600 font-medium">
+                          <AvatarFallback className="bg-slate-100 text-slate-600 font-medium text-sm">
                           {message.initials}
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between mb-1">
-                          <h3 className="font-heading text-primary-navy truncate">
+                            <h3 className="font-heading text-sm sm:text-base text-primary-navy truncate">
                             {message.name}
                           </h3>
-                          <span className="text-sm text-slate-500 font-subheading">{message.date}</span>
+                            <span className="text-xs sm:text-sm text-slate-500 font-subheading whitespace-nowrap ml-2">{message.date}</span>
                         </div>
-                        <p className="text-slate-600 font-subheading text-sm line-clamp-2">
+                          <p className="text-slate-600 font-subheading text-xs sm:text-sm line-clamp-2">
                           {message.preview}
                         </p>
                         <div className="flex items-center justify-between mt-2">
@@ -555,7 +560,7 @@ export default function InboxPage() {
                             </Button>
                             <div className="flex items-center space-x-1">
                               <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-                              <span className="text-xs text-slate-500">Starred</span>
+                                <span className="text-xs text-slate-500 hidden sm:inline">Starred</span>
                             </div>
                           </div>
                         </div>
@@ -575,56 +580,55 @@ export default function InboxPage() {
   // Default inbox list view
   return (
     <div className="min-h-full">
-      <div className="w-[65%] mx-auto py-4">
+      <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 md:px-6 py-2 sm:py-4">
         {/* Header Section */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 sm:mb-8 space-y-4 sm:space-y-0">
           <div>
-            <h1 className="text-4xl font-heading text-primary-navy mb-2">Messages</h1>
-            <p className="text-slate-600 font-subheading text-xl">Stay in touch with your professional network</p>
+            <h1 className="text-2xl sm:text-4xl font-heading text-primary-navy mb-1 sm:mb-2">Messages</h1>
+            <p className="text-slate-600 font-subheading text-base sm:text-xl">Stay in touch with your professional network</p>
             </div>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-3 overflow-x-auto">
             <Button 
               variant="outline" 
               size="sm" 
-              className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading"
+              className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading whitespace-nowrap text-xs sm:text-sm px-3 sm:px-4"
               onClick={handleShowArchived}
             >
-              <Archive className="h-4 w-4 mr-2" />
+              <Archive className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
               Archive ({archivedMessages.length})
             </Button>
             <Button 
               variant="outline" 
               size="sm" 
-              className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading"
+              className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-xl font-subheading whitespace-nowrap text-xs sm:text-sm px-3 sm:px-4"
               onClick={handleShowStarred}
             >
-              <Star className="h-4 w-4 mr-2" />
+              <Star className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
               Starred ({starredMessages.length})
             </Button>
           </div>
         </div>
 
         {/* Search Section */}
-        <Card className="border-0 shadow-sm rounded-2xl bg-white mb-6 max-w-2xl">
-          <CardContent className="p-4">
+        <Card className="border-0 shadow-sm rounded-xl sm:rounded-2xl bg-white mb-4 sm:mb-6">
+          <CardContent className="p-3 sm:p-4">
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-slate-400" />
+              <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-slate-400" />
               <Input 
                 placeholder="Search conversations..." 
-                className="pl-12 pr-4 py-3 border-slate-200 focus:border-primary-navy/30 focus:ring-primary-navy/10 rounded-xl font-subheading"
+                className="pl-10 sm:pl-12 pr-3 sm:pr-4 py-2 sm:py-3 border-slate-200 focus:border-primary-navy/30 focus:ring-primary-navy/10 rounded-xl font-subheading text-sm sm:text-base"
               />
             </div>
           </CardContent>
         </Card>
 
         {/* Messages List */}
-        <div className="space-y-3 max-w-4xl">
+        <div className="space-y-0">
           {activeMessages.length === 0 ? (
-            <Card className="border-0 shadow-sm rounded-2xl bg-white">
-              <CardContent className="p-12 text-center">
-                <Circle className="h-16 w-16 mx-auto text-slate-300 mb-4" />
-                <h3 className="text-xl font-heading text-slate-600 mb-2">No active messages</h3>
-                <p className="text-slate-500 font-subheading mb-4">All your messages have been archived.</p>
+            <div className="p-8 sm:p-12 text-center bg-white rounded-xl sm:rounded-2xl border border-slate-100">
+              <Circle className="h-12 w-12 sm:h-16 sm:w-16 mx-auto text-slate-300 mb-3 sm:mb-4" />
+              <h3 className="text-lg sm:text-xl font-heading text-slate-600 mb-2">No active messages</h3>
+              <p className="text-slate-500 font-subheading mb-4 text-sm sm:text-base">All your messages have been archived.</p>
                 <Button 
                   variant="outline" 
                   onClick={handleShowArchived}
@@ -633,43 +637,41 @@ export default function InboxPage() {
                   <Archive className="h-4 w-4 mr-2" />
                   View Archived ({archivedMessages.length})
                 </Button>
-              </CardContent>
-            </Card>
+            </div>
           ) : (
             activeMessages.map((message) => (
-            <Card 
+              <div 
               key={message.id}
-              className="border-0 shadow-sm hover:shadow-md transition-all duration-200 rounded-2xl bg-white cursor-pointer"
+                className="w-full bg-white hover:bg-slate-50 transition-all duration-200 cursor-pointer border-b border-slate-100 last:border-b-0"
               onClick={() => handleMessageClick(message)}
             >
-              <CardContent className="p-0">
-                <div className="flex items-center space-x-4 p-6 group">
-                  <div className="relative">
-                    <Avatar className="w-14 h-14">
+                <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 group">
+                  <div className="relative flex-shrink-0">
+                    <Avatar className="w-12 h-12 sm:w-14 sm:h-14">
                       <AvatarImage src={message.avatar || undefined} alt={message.name} />
-                      <AvatarFallback className={`${message.isPriority ? 'bg-[#0056B3]/10 text-[#0056B3]' : 'bg-slate-100 text-slate-600'} font-medium text-base`}>
+                      <AvatarFallback className={`${message.isPriority ? 'bg-[#0056B3]/10 text-[#0056B3]' : 'bg-slate-100 text-slate-600'} font-medium text-sm sm:text-base`}>
                         {message.initials}
                       </AvatarFallback>
                     </Avatar>
                     {message.isOnline && (
-                      <div className={`absolute -bottom-1 -right-1 w-4 h-4 ${message.isPriority ? 'bg-[#0056B3]' : 'bg-green-500'} rounded-full border-2 border-white`}></div>
+                      <div className={`absolute -bottom-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 ${message.isPriority ? 'bg-[#0056B3]' : 'bg-green-500'} rounded-full border-2 border-white`}></div>
                     )}
         </div>
 
           <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
-                      <h3 className="font-heading text-lg text-primary-navy truncate">
+                      <h3 className="font-heading text-base sm:text-lg text-primary-navy truncate">
                         {message.name}
                       </h3>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-sm text-slate-500 font-subheading whitespace-nowrap">{message.date}</span>
+                      <div className="flex items-center space-x-1 sm:space-x-2 ml-2">
+                        <span className="text-xs sm:text-sm text-slate-500 font-subheading whitespace-nowrap">{message.date}</span>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity h-7 w-7">
-                              <MoreHorizontal className="h-4 w-4 text-slate-400" />
+                            <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity h-6 w-6 sm:h-7 sm:w-7">
+                              <MoreHorizontal className="h-3 w-3 sm:h-4 sm:w-4 text-slate-400" />
                             </Button>
                           </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end" className="w-40">
+                          <DropdownMenuContent align="end" className="w-32 sm:w-40">
                             <DropdownMenuItem onClick={(e) => handleArchive(message.id, e)}>
                               <Archive className="h-4 w-4 mr-2" />
                               {message.isArchived ? 'Unarchive' : 'Archive'}
@@ -686,36 +688,35 @@ export default function InboxPage() {
                         </DropdownMenu>
                       </div>
                     </div>
-                    <p className="text-slate-600 font-subheading leading-relaxed line-clamp-2 text-sm mb-3">
+                    <p className="text-slate-600 font-subheading leading-relaxed line-clamp-2 text-xs sm:text-sm mb-2 sm:mb-3">
                       {message.preview}
                     </p>
                                 <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-2 sm:space-x-3">
                         <span className={`text-xs px-2 py-1 rounded-full font-medium ${message.isPriority ? 'bg-[#0056B3]/10 text-[#0056B3]' : 'bg-slate-100 text-slate-600'}`}>
                           {message.category}
                         </span>
                         {message.messageCount > 1 && (
-                          <span className="text-xs text-slate-500">{message.messageCount} messages</span>
+                          <span className="text-xs text-slate-500 hidden sm:inline">{message.messageCount} messages</span>
                         )}
                       </div>
                       {message.isStarred && (
-                        <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                        <Star className="h-3 w-3 sm:h-4 sm:w-4 fill-amber-400 text-amber-400" />
                       )}
                     </div>
             </div>
           </div>
-              </CardContent>
-            </Card>
+              </div>
             ))
           )}
         </div>
 
         {/* Footer Message */}
-        <Card className="border-0 shadow-sm rounded-2xl bg-gradient-to-r from-primary-navy to-[#0056B3] text-white mt-8 max-w-4xl">
-          <CardContent className="p-6">
+        <Card className="border-0 shadow-sm rounded-xl sm:rounded-2xl bg-gradient-to-r from-primary-navy to-[#0056B3] text-white mt-6 sm:mt-8">
+          <CardContent className="p-4 sm:p-6">
             <div className="text-center">
-              <h3 className="font-heading text-xl mb-2">Stay Connected</h3>
-              <p className="text-blue-200 font-subheading leading-relaxed">
+              <h3 className="font-heading text-lg sm:text-xl mb-2">Stay Connected</h3>
+              <p className="text-blue-200 font-subheading leading-relaxed text-sm sm:text-base">
                 Keep the conversation going with your professional network. Every message is an opportunity to grow.
               </p>
             </div>

@@ -59,6 +59,12 @@
   * {
     @apply border-border;
   }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
   body {
     @apply bg-background text-foreground;
   }
@@ -90,4 +96,25 @@
   .text-primary-navy {
     color: hsl(var(--primary-navy));
   }
+
+  /* Safe area utilities for mobile devices */
+  .safe-area-pb {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+}
+
+.animate-marquee2 {
+    animation: marquee2 20s linear infinite;
+  }
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg) translateX(var(--orbit-radius, 150px)) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(var(--orbit-radius, 150px)) rotate(-360deg);
+    }
+  }
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
 }
