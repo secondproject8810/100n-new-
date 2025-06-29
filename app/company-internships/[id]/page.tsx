@@ -41,202 +41,146 @@ import {
   Brain
 } from "lucide-react"
 
-export default function JobDetails() {
+export default function InternshipDetails() {
   const router = useRouter()
   const params = useParams()
-  const jobId = params.id as string
+  const internshipId = params.id as string
   const [selectedApplicant, setSelectedApplicant] = useState<any>(null)
   const [showApplicantDetails, setShowApplicantDetails] = useState(false)
   const [showCompanyProfilePopup, setShowCompanyProfilePopup] = useState(false)
 
-  // Mock job data - in real app, this would be fetched based on jobId
-  const job = {
-    id: parseInt(jobId),
-    title: "Senior Frontend Developer",
+  // Mock internship data - in real app, this would be fetched based on internshipId
+  const internship = {
+    id: parseInt(internshipId),
+    title: "Software Engineering Intern",
     department: "Engineering",
     location: "San Francisco, CA",
-    type: "Full-time",
-    salary: "$120K - $150K",
-    experience: "Senior Level (5+ years)",
+    type: "Full-time Internship",
+    salary: "$5,000 - $7,000/month",
+    experience: "Student/Entry Level",
     status: "Active",
-    applicants: 45,
-    views: 892,
-    posted: "5 days ago",
-    deadline: "December 15, 2024",
-    skills: ["React", "TypeScript", "Next.js", "Tailwind CSS", "GraphQL", "Jest", "Cypress"],
-    description: `We are looking for a skilled Frontend Developer to join our engineering team. You will be responsible for developing user-facing features, ensuring cross-browser compatibility, and collaborating with designers and backend developers.
+    applicants: 28,
+    views: 542,
+    posted: "3 days ago",
+    deadline: "January 15, 2025",
+    skills: ["React", "JavaScript", "Python", "Git", "SQL", "HTML/CSS"],
+    description: `We are looking for a motivated Software Engineering Intern to join our engineering team for a 12-week summer internship program. You will work alongside experienced engineers on real projects that impact millions of users.
 
-Key Responsibilities:
-• Develop and maintain user-facing features using React and TypeScript
-• Optimize applications for maximum speed and scalability
-• Collaborate with cross-functional teams including design and backend
-• Participate in code reviews and technical discussions
-• Mentor junior developers and contribute to team growth
-• Implement responsive designs with pixel-perfect precision
-• Write comprehensive tests using Jest and Cypress
+What You'll Do:
+• Work on frontend development using React and JavaScript
+• Contribute to backend services and APIs
+• Participate in code reviews and engineering discussions
+• Learn about software development best practices and methodologies
+• Collaborate with cross-functional teams including design and product
+• Present your work to the engineering team at the end of the internship
 
-Requirements:
-• 5+ years of experience with React and TypeScript
-• Strong understanding of modern frontend technologies and best practices
-• Experience with state management libraries (Redux, Zustand)
-• Knowledge of testing frameworks (Jest, Cypress)
-• Excellent communication skills and ability to work in a team environment
-• Bachelor's degree in Computer Science or equivalent experience
+What We're Looking For:
+• Currently pursuing a degree in Computer Science, Software Engineering, or related field
+• Basic knowledge of programming languages (JavaScript, Python, Java, etc.)
+• Understanding of web development fundamentals (HTML, CSS, JavaScript)
+• Experience with version control (Git)
+• Strong problem-solving skills and eagerness to learn
+• Excellent communication and teamwork abilities
 
-Nice to Have:
-• Experience with Next.js and SSR/SSG
-• Knowledge of GraphQL and Apollo Client
-• Familiarity with design systems and component libraries
-• Experience with CI/CD pipelines
-• Previous experience in a startup environment`,
+What We Offer:
+• Competitive internship stipend ($5,000 - $7,000/month)
+• Mentorship from senior engineers
+• Real-world project experience
+• Professional development opportunities
+• Team events and networking opportunities
+• Potential for full-time offer upon graduation`,
     company: "TechCorp Inc.",
     postedBy: "Sarah Johnson",
     applications: [
       {
         id: 1,
-        name: "Michael Chen",
-        title: "Senior Frontend Developer",
-        currentCompany: "Meta",
-        rating: 4.9,
-        reviews: 156,
-        experience: "6+ years",
-        expectedSalary: "$130K",
-        location: "San Francisco, CA",
-        profileImage: "/api/placeholder/64/64",
-        status: "new",
-        appliedDate: "2 days ago",
-        availability: "2 weeks notice",
-        responseTime: "1 hour",
-        coverLetter: "I'm excited about the opportunity to join TechCorp as a Senior Frontend Developer. With 6+ years of experience at Meta, I've led the development of several high-traffic web applications using React and TypeScript. I'm particularly drawn to your focus on innovation and would love to contribute to your team's success.",
-        skills: ["React", "TypeScript", "Next.js", "GraphQL", "Redux", "Testing"],
-        currentRole: "Senior Software Engineer at Meta",
-        education: "M.S. Computer Science, Stanford University",
-        languages: ["English (Native)", "Mandarin (Fluent)"],
-        certifications: ["React Certified Developer", "AWS Solutions Architect"],
-        portfolio: [
-          { title: "E-commerce Platform", description: "React/TypeScript application", link: "#" },
-          { title: "Data Visualization Dashboard", description: "D3.js and React", link: "#" },
-        ],
-        email: "michael.chen@email.com",
-        phone: "+1 (555) 123-4567"
-      },
-      {
-        id: 2,
-        name: "Emily Rodriguez",
-        title: "Frontend Developer",
-        currentCompany: "Airbnb",
-        rating: 4.8,
-        reviews: 134,
-        experience: "5+ years",
-        expectedSalary: "$125K",
-        location: "San Francisco, CA",
-        profileImage: "/api/placeholder/64/64",
-        status: "reviewing",
-        appliedDate: "3 days ago",
-        availability: "Immediately",
-        responseTime: "2 hours",
-        coverLetter: "As a Frontend Developer at Airbnb with 5+ years of experience, I've been responsible for building and maintaining user-facing features that serve millions of users. I'm passionate about creating exceptional user experiences and would love to bring my expertise to TechCorp.",
-        skills: ["React", "TypeScript", "Sass", "Webpack", "Jest", "Cypress"],
-        currentRole: "Frontend Developer at Airbnb",
-        education: "B.S. Computer Science, UC Berkeley",
-        languages: ["English (Native)", "Spanish (Native)"],
-        certifications: ["Google Frontend Developer", "React Certified"],
-        portfolio: [
-          { title: "Booking Interface", description: "Complex React application", link: "#" },
-          { title: "Component Library", description: "Design system implementation", link: "#" },
-        ],
-        email: "emily.rodriguez@email.com",
-        phone: "+1 (555) 234-5678"
-      },
-      {
-        id: 3,
-        name: "David Kim",
-        title: "Senior React Developer",
-        currentCompany: "Netflix",
-        rating: 5.0,
-        reviews: 89,
-        experience: "7+ years",
-        expectedSalary: "$140K",
-        location: "Los Gatos, CA",
-        profileImage: "/api/placeholder/64/64",
-        status: "shortlisted",
-        appliedDate: "4 days ago",
-        availability: "3 weeks notice",
-        responseTime: "30 minutes",
-        coverLetter: "I'm a Senior React Developer at Netflix with 7+ years of experience building scalable frontend applications. I've led multiple projects from conception to deployment and am excited about the opportunity to contribute to TechCorp's innovative products.",
-        skills: ["React", "TypeScript", "Next.js", "GraphQL", "Redux Toolkit", "Microservices"],
-        currentRole: "Senior Software Engineer at Netflix",
-        education: "B.S. Software Engineering, University of Washington",
-        languages: ["English (Native)", "Korean (Fluent)"],
-        certifications: ["React Expert", "AWS Certified Developer"],
-        portfolio: [
-          { title: "Streaming Platform UI", description: "High-performance React app", link: "#" },
-          { title: "Admin Dashboard", description: "Complex data visualization", link: "#" },
-        ],
-        email: "david.kim@email.com",
-        phone: "+1 (555) 345-6789"
-      },
-      {
-        id: 4,
-        name: "Sarah Kim",
-        title: "Frontend Developer",
-        currentCompany: "Spotify",
-        rating: 4.9,
-        reviews: 78,
-        experience: "4+ years",
-        expectedSalary: "$115K",
-        location: "New York, NY",
-        profileImage: "/api/placeholder/64/64",
-        status: "interviewed",
-        appliedDate: "6 days ago",
-        availability: "1 month notice",
-        responseTime: "45 minutes",
-        coverLetter: "I'm a Frontend Developer at Spotify with 4+ years of experience building user interfaces for millions of users. I specialize in React, TypeScript, and modern frontend technologies. I'm excited about the opportunity to bring my skills to TechCorp.",
-        skills: ["React", "TypeScript", "Redux", "GraphQL", "Styled Components", "Jest"],
-        currentRole: "Frontend Developer at Spotify",
-        education: "B.S. Computer Science, NYU",
-        languages: ["English (Fluent)", "Korean (Native)"],
-        certifications: ["React Certified", "TypeScript Expert"],
-        portfolio: [
-          { title: "Music Player Interface", description: "React music application", link: "#" },
-          { title: "Analytics Dashboard", description: "Data visualization project", link: "#" },
-        ],
-        email: "sarah.kim@email.com",
-        phone: "+1 (555) 456-7890"
-      },
-      {
-        id: 5,
-        name: "John Smith",
-        title: "Frontend Engineer",
-        currentCompany: "Google",
+        name: "Emma Thompson",
+        title: "Computer Science Student",
+        currentCompany: "Stanford University",
         rating: 4.7,
-        reviews: 234,
-        experience: "8+ years",
-        expectedSalary: "$150K",
-        location: "Mountain View, CA",
+        reviews: 45,
+        experience: "Student (Junior Year)",
+        expectedSalary: "$6,000/month",
+        location: "Palo Alto, CA",
         profileImage: "/api/placeholder/64/64",
         status: "new",
         appliedDate: "1 day ago",
-        availability: "4 weeks notice",
+        availability: "May 2025",
         responseTime: "2 hours",
-        coverLetter: "I'm a Frontend Engineer at Google with 8+ years of experience building large-scale web applications. I have deep expertise in React, TypeScript, and modern frontend architecture. I'm interested in joining TechCorp to work on innovative products.",
-        skills: ["React", "TypeScript", "Angular", "Vue.js", "Node.js", "Docker"],
-        currentRole: "Senior Frontend Engineer at Google",
-        education: "M.S. Computer Science, MIT",
-        languages: ["English (Native)", "French (Fluent)"],
-        certifications: ["Google Cloud Certified", "React Expert"],
+        coverLetter: "I'm a junior at Stanford studying Computer Science with a passion for full-stack development. I've completed several personal projects using React and Python, and I'm excited about the opportunity to gain real-world experience at TechCorp. I'm eager to learn from experienced engineers and contribute to meaningful projects.",
+        skills: ["React", "JavaScript", "Python", "SQL", "Git", "Node.js"],
+        currentRole: "Computer Science Student at Stanford University",
+        education: "B.S. Computer Science, Stanford University (Expected 2026)",
+        languages: ["English (Native)", "French (Conversational)"],
+        certifications: ["Google Developer Student Challenge Winner", "React Fundamentals Certificate"],
         portfolio: [
-          { title: "Search Interface", description: "High-performance search UI", link: "#" },
-          { title: "Developer Tools", description: "Chrome DevTools extension", link: "#" },
+          { title: "Personal Portfolio Website", description: "React-based portfolio", link: "#" },
+          { title: "Task Management App", description: "Full-stack web application", link: "#" },
         ],
-        email: "john.smith@email.com",
-        phone: "+1 (555) 567-8901"
+        email: "emma.thompson@stanford.edu",
+        phone: "+1 (555) 111-2222"
+      },
+      {
+        id: 2,
+        name: "Alex Martinez",
+        title: "Software Engineering Student",
+        currentCompany: "UC Berkeley",
+        rating: 4.8,
+        reviews: 32,
+        experience: "Student (Senior Year)",
+        expectedSalary: "$6,500/month",
+        location: "Berkeley, CA",
+        profileImage: "/api/placeholder/64/64",
+        status: "reviewing",
+        appliedDate: "2 days ago",
+        availability: "June 2025",
+        responseTime: "1 hour",
+        coverLetter: "As a senior Computer Science student at UC Berkeley, I have strong foundations in algorithms, data structures, and software engineering. I've worked on several team projects and have internship experience at a local startup. I'm looking forward to applying my skills in a larger tech environment and learning from TechCorp's engineering culture.",
+        skills: ["Java", "Python", "React", "Spring Boot", "Docker", "AWS"],
+        currentRole: "Software Engineering Student at UC Berkeley",
+        education: "B.S. Computer Science, UC Berkeley (Expected 2025)",
+        languages: ["English (Native)", "Spanish (Native)"],
+        certifications: ["AWS Cloud Practitioner", "Oracle Java Certified"],
+        portfolio: [
+          { title: "Social Media Platform", description: "Java Spring Boot application", link: "#" },
+          { title: "Machine Learning Project", description: "Python-based recommendation system", link: "#" },
+        ],
+        email: "alex.martinez@berkeley.edu",
+        phone: "+1 (555) 222-3333"
+      },
+      {
+        id: 3,
+        name: "Sarah Chen",
+        title: "CS & Math Double Major",
+        currentCompany: "MIT",
+        rating: 4.9,
+        reviews: 28,
+        experience: "Student (Sophomore Year)",
+        expectedSalary: "$5,500/month",
+        location: "Cambridge, MA",
+        profileImage: "/api/placeholder/64/64",
+        status: "shortlisted",
+        appliedDate: "3 days ago",
+        availability: "June 2025",
+        responseTime: "30 minutes",
+        coverLetter: "I'm a sophomore at MIT double majoring in Computer Science and Mathematics. Despite being early in my academic career, I've already contributed to open-source projects and built several full-stack applications. I'm passionate about clean code and algorithmic problem-solving, and I would love to contribute to TechCorp's innovative projects.",
+        skills: ["Python", "JavaScript", "C++", "React", "TensorFlow", "Linux"],
+        currentRole: "CS & Math Student at MIT",
+        education: "B.S. Computer Science & Mathematics, MIT (Expected 2027)",
+        languages: ["English (Native)", "Mandarin (Fluent)", "German (Basic)"],
+        certifications: ["MIT Introduction to Algorithms Certificate", "Deep Learning Specialization"],
+        portfolio: [
+          { title: "Algorithm Visualizer", description: "Interactive algorithm learning tool", link: "#" },
+          { title: "ML Stock Predictor", description: "TensorFlow-based prediction model", link: "#" },
+        ],
+        email: "sarah.chen@mit.edu",
+        phone: "+1 (555) 333-4444"
       }
     ]
   }
 
   const handleAction = (applicantId: number, action: 'interview' | 'reject' | 'message') => {
-    const applicant = job.applications.find(a => a.id === applicantId)
+    const applicant = internship.applications.find(a => a.id === applicantId)
     console.log(`${action} applicant:`, applicant?.name)
     // Here you would implement the actual action logic
   }
@@ -286,48 +230,48 @@ Nice to Have:
           className="mb-4 font-subheading text-primary-navy hover:bg-primary-navy/10"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Jobs
+          Back to Internships
         </Button>
         
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <div className="flex items-center space-x-3 mb-3">
-              <h1 className="text-3xl font-heading text-primary-navy">{job.title}</h1>
-              <Badge className={`${getJobStatusColor(job.status)} font-subheading px-3 py-1`}>
-                {job.status}
+              <h1 className="text-3xl font-heading text-primary-navy">{internship.title}</h1>
+              <Badge className={`${getJobStatusColor(internship.status)} font-subheading px-3 py-1`}>
+                {internship.status}
               </Badge>
             </div>
             <div className="flex items-center space-x-4 text-lg font-subheading text-slate-600 mb-4">
               <span className="flex items-center">
                 <Building2 className="h-5 w-5 mr-2" />
-                {job.department}
+                {internship.department}
               </span>
               <span>•</span>
               <span className="flex items-center">
                 <MapPin className="h-5 w-5 mr-2" />
-                {job.location}
+                {internship.location}
               </span>
               <span>•</span>
               <span className="flex items-center">
                 <DollarSign className="h-5 w-5 mr-2 text-green-600" />
-                <span className="font-heading text-green-600">{job.salary}</span>
+                <span className="font-heading text-green-600">{internship.salary}</span>
               </span>
             </div>
             <div className="flex items-center space-x-4 text-base font-subheading text-slate-500">
-              <span>Posted by {job.postedBy}</span>
+              <span>Posted by {internship.postedBy}</span>
               <span>•</span>
-              <span>{job.posted}</span>
+              <span>{internship.posted}</span>
               <span>•</span>
-              <span>{job.experience}</span>
+              <span>{internship.experience}</span>
             </div>
           </div>
           
           <div className="flex items-center space-x-3">
             <Button variant="outline" className="border-primary-navy text-primary-navy hover:bg-primary-navy hover:text-white rounded-lg font-subheading">
-              Edit Job
+              Edit Internship
             </Button>
             <Button className="bg-primary-navy hover:bg-primary-navy/90 text-white rounded-lg font-subheading">
-              Promote Job
+              Promote Internship
             </Button>
           </div>
         </div>
@@ -339,7 +283,7 @@ Nice to Have:
           <CardContent className="p-6 text-center">
             <div className="flex items-center justify-center mb-3">
               <Users className="h-6 w-6 text-blue-600 mr-2" />
-              <span className="text-2xl font-heading text-slate-900">{job.applicants}</span>
+              <span className="text-2xl font-heading text-slate-900">{internship.applicants}</span>
             </div>
             <p className="font-subheading text-slate-600">Total Applications</p>
           </CardContent>
@@ -349,9 +293,9 @@ Nice to Have:
           <CardContent className="p-6 text-center">
             <div className="flex items-center justify-center mb-3">
               <Eye className="h-6 w-6 text-green-600 mr-2" />
-              <span className="text-2xl font-heading text-slate-900">{job.views}</span>
+              <span className="text-2xl font-heading text-slate-900">{internship.views}</span>
             </div>
-            <p className="font-subheading text-slate-600">Job Views</p>
+            <p className="font-subheading text-slate-600">Internship Views</p>
           </CardContent>
         </Card>
         
@@ -359,7 +303,7 @@ Nice to Have:
           <CardContent className="p-6 text-center">
             <div className="flex items-center justify-center mb-3">
               <Target className="h-6 w-6 text-purple-600 mr-2" />
-              <span className="text-2xl font-heading text-slate-900">{((job.applicants / job.views) * 100).toFixed(1)}%</span>
+              <span className="text-2xl font-heading text-slate-900">{((internship.applicants / internship.views) * 100).toFixed(1)}%</span>
             </div>
             <p className="font-subheading text-slate-600">Application Rate</p>
           </CardContent>
@@ -369,7 +313,7 @@ Nice to Have:
           <CardContent className="p-6 text-center">
             <div className="flex items-center justify-center mb-3">
               <Calendar className="h-6 w-6 text-orange-600 mr-2" />
-              <span className="text-2xl font-heading text-slate-900">10</span>
+              <span className="text-2xl font-heading text-slate-900">22</span>
             </div>
             <p className="font-subheading text-slate-600">Days Left</p>
           </CardContent>
@@ -380,29 +324,29 @@ Nice to Have:
       <Tabs defaultValue="overview" className="space-y-6">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="overview" className="font-subheading">Overview</TabsTrigger>
-          <TabsTrigger value="applicants" className="font-subheading">Applicants ({job.applications.length})</TabsTrigger>
+          <TabsTrigger value="applicants" className="font-subheading">Applicants ({internship.applications.length})</TabsTrigger>
           <TabsTrigger value="analytics" className="font-subheading">Analytics</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Job Description */}
+            {/* Internship Description */}
             <div className="lg:col-span-2">
               <Card className="border-slate-200">
                 <CardHeader>
-                  <CardTitle className="font-heading text-primary-navy">Job Description</CardTitle>
+                  <CardTitle className="font-heading text-primary-navy">Internship Description</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="prose max-w-none">
                     <div className="whitespace-pre-line font-subheading text-slate-700 leading-relaxed">
-                      {job.description}
+                      {internship.description}
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
-            {/* Job Details Sidebar */}
+            {/* Internship Details Sidebar */}
             <div className="space-y-6">
               {/* Skills Required */}
               <Card className="border-slate-200">
@@ -411,7 +355,7 @@ Nice to Have:
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
-                    {job.skills.map((skill, index) => (
+                    {internship.skills.map((skill, index) => (
                       <Badge key={index} variant="outline" className="font-subheading border-slate-300">
                         {skill}
                       </Badge>
@@ -436,33 +380,33 @@ Nice to Have:
                   </Button>
                   <Button variant="outline" className="w-full border-slate-300 text-slate-700 hover:bg-slate-50 font-subheading">
                     <ExternalLink className="h-4 w-4 mr-2" />
-                    Share Job
+                    Share Internship
                   </Button>
                 </CardContent>
               </Card>
 
-              {/* Job Timeline */}
+              {/* Internship Timeline */}
               <Card className="border-slate-200">
                 <CardHeader>
-                  <CardTitle className="font-heading text-primary-navy">Job Timeline</CardTitle>
+                  <CardTitle className="font-heading text-primary-navy">Internship Timeline</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4 font-subheading">
                     <div className="flex items-center justify-between">
                       <span className="text-slate-600">Posted</span>
-                      <span className="font-heading text-slate-900">{job.posted}</span>
+                      <span className="font-heading text-slate-900">{internship.posted}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-600">Job Type</span>
-                      <span className="font-heading text-slate-900">{job.type}</span>
+                      <span className="text-slate-600">Internship Type</span>
+                      <span className="font-heading text-slate-900">{internship.type}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-slate-600">Application Deadline</span>
-                      <span className="font-heading text-slate-900">{job.deadline}</span>
+                      <span className="font-heading text-slate-900">{internship.deadline}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-slate-600">Salary Range</span>
-                      <span className="font-heading text-green-600">{job.salary}</span>
+                      <span className="text-slate-600">Stipend Range</span>
+                      <span className="font-heading text-green-600">{internship.salary}</span>
                     </div>
                   </div>
                 </CardContent>
@@ -473,7 +417,7 @@ Nice to Have:
 
         <TabsContent value="applicants" className="space-y-6">
           <div className="space-y-4">
-            {job.applications.map((applicant) => (
+            {internship.applications.map((applicant) => (
               <Card key={applicant.id} className="border-slate-200 hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between">
@@ -516,7 +460,7 @@ Nice to Have:
                         
                         <div className="flex items-center space-x-6 mb-4">
                           <div>
-                            <span className="text-sm font-subheading text-slate-500">Expected Salary</span>
+                            <span className="text-sm font-subheading text-slate-500">Expected Stipend</span>
                             <p className="text-lg font-heading text-green-600">{applicant.expectedSalary}</p>
                           </div>
                           <div>
@@ -596,15 +540,15 @@ Nice to Have:
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="font-subheading text-slate-600">Total Applications</span>
-                    <span className="font-heading text-2xl text-slate-900">{job.applicants}</span>
+                    <span className="font-heading text-2xl text-slate-900">{internship.applicants}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="font-subheading text-slate-600">Average Experience</span>
-                    <span className="font-heading text-2xl text-green-600">5.8 years</span>
+                    <span className="font-subheading text-slate-600">Average Academic Year</span>
+                    <span className="font-heading text-2xl text-green-600">Junior</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="font-subheading text-slate-600">Salary Range</span>
-                    <span className="font-heading text-lg text-slate-900">$115K - $150K</span>
+                    <span className="font-subheading text-slate-600">Stipend Range</span>
+                    <span className="font-heading text-lg text-slate-900">$5.5K - $6.5K/mo</span>
                   </div>
                 </div>
               </CardContent>
@@ -618,15 +562,15 @@ Nice to Have:
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="font-subheading text-slate-600">Views</span>
-                    <span className="font-heading text-2xl text-slate-900">{job.views}</span>
+                    <span className="font-heading text-2xl text-slate-900">{internship.views}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-subheading text-slate-600">Application Rate</span>
-                    <span className="font-heading text-2xl text-blue-600">{((job.applicants / job.views) * 100).toFixed(1)}%</span>
+                    <span className="font-heading text-2xl text-blue-600">{((internship.applicants / internship.views) * 100).toFixed(1)}%</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-subheading text-slate-600">Response Time</span>
-                    <span className="font-heading text-lg text-slate-900">1.2 hours avg</span>
+                    <span className="font-heading text-lg text-slate-900">1.1 hours avg</span>
                   </div>
                 </div>
               </CardContent>
@@ -703,11 +647,11 @@ Nice to Have:
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <div className="flex justify-between">
-                        <span className="font-subheading text-slate-600">Experience</span>
+                        <span className="font-subheading text-slate-600">Academic Level</span>
                         <span className="font-heading text-slate-900">{selectedApplicant.experience}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="font-subheading text-slate-600">Current Company</span>
+                        <span className="font-subheading text-slate-600">University</span>
                         <span className="font-heading text-slate-900">{selectedApplicant.currentCompany}</span>
                       </div>
                       <div className="flex justify-between">
@@ -715,7 +659,7 @@ Nice to Have:
                         <span className="font-heading text-slate-900">{selectedApplicant.responseTime}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="font-subheading text-slate-600">Expected Salary</span>
+                        <span className="font-subheading text-slate-600">Expected Stipend</span>
                         <span className="font-heading text-green-600">{selectedApplicant.expectedSalary}</span>
                       </div>
                     </CardContent>

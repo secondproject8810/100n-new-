@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Bell, Briefcase, Globe, Inbox, LayoutDashboard, MessageSquare, Users, Building2, Settings, Menu, X, ChevronDown, GraduationCap } from "lucide-react"
+import { Bell, Briefcase, Globe, Inbox, LayoutDashboard, MessageSquare, Users, Building2, Settings, Menu, X, ChevronDown, GraduationCap, MessageCircle } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -68,7 +68,6 @@ const networkCompaniesItems = [
 
 export default function Header() {
   const [notifications, setNotifications] = useState(18)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
   // Check if we're on network or companies page for active styling
@@ -237,77 +236,20 @@ export default function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          {/* Messages Icon */}
+          <Link
+            href="/inbox"
+            className={cn(
+              "flex items-center px-2 md:px-3 py-2 text-sm font-medium rounded-lg transition-colors lg:hidden",
+              pathname === "/inbox"
+                ? "bg-primary-navy text-white"
+                : "text-slate-600 hover:bg-slate-100 hover:text-primary-navy",
+            )}
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+            <MessageCircle className="h-5 w-5" />
+          </Link>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden border-t bg-background">
-          <nav className="px-4 py-2 space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors",
-                  pathname === item.href
-                    ? "bg-primary-navy text-white"
-                    : "text-slate-600 hover:bg-slate-100 hover:text-primary-navy",
-                )}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <item.icon className="mr-3 h-4 w-4" />
-                {item.name}
-              </Link>
-            ))}
-            
-            {/* Mobile Find Work Links */}
-            {findWorkItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors",
-                  pathname === item.href
-                    ? "bg-primary-navy text-white"
-                    : "text-slate-600 hover:bg-slate-100 hover:text-primary-navy",
-                )}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <item.icon className="mr-3 h-4 w-4" />
-                {item.name}
-              </Link>
-            ))}
-            
-            {/* Mobile Network & Companies Links */}
-            {networkCompaniesItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors",
-                  pathname === item.href
-                    ? "bg-primary-navy text-white"
-                    : "text-slate-600 hover:bg-slate-100 hover:text-primary-navy",
-                )}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <item.icon className="mr-3 h-4 w-4" />
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
     </header>
   )
 }
